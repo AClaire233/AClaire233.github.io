@@ -33,6 +33,7 @@
   --accent-light: #A3C9A8;
   --accent-warm: #C4A882;
   --accent-muted: #9DB5A0;
+  --danger: #C44536;
 
   --border-dark: #B0AAA0;
   --border-light: #D4D0C8;
@@ -54,7 +55,6 @@ body {
   min-height: 100vh;
 }
 
-/* subtle texture background */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1;
@@ -75,11 +75,7 @@ body::before {
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
 
 /* SECTION: page wrapper */
-.page-wrapper {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 16px 12px;
-}
+.page-wrapper { max-width: var(--max-width); margin: 0 auto; padding: 16px 12px; }
 
 /* SECTION: header banner */
 .site-header {
@@ -107,10 +103,7 @@ body::before {
   font-family: var(--font-mono);
   position: relative; z-index: 1;
 }
-.header-deco {
-  display: flex; justify-content: center; gap: 8px;
-  margin-top: 12px; position: relative; z-index: 1;
-}
+.header-deco { display: flex; justify-content: center; gap: 8px; margin-top: 12px; position: relative; z-index: 1; }
 .deco-dot { width: 6px; height: 6px; border-radius: 50%; }
 .deco-dot:nth-child(1) { background: var(--accent-warm); }
 .deco-dot:nth-child(2) { background: var(--accent-light); }
@@ -141,14 +134,8 @@ body::before {
   user-select: none;
 }
 .nav-link:last-child { border-right: none; }
-.nav-link:hover {
-  background: var(--accent);
-  color: #fff;
-}
-.nav-link.active {
-  background: var(--accent-dark);
-  color: var(--accent-warm);
-}
+.nav-link:hover { background: var(--accent); color: #fff; }
+.nav-link.active { background: var(--accent-dark); color: var(--accent-warm); }
 
 /* SECTION: marquee */
 .marquee-bar {
@@ -175,11 +162,7 @@ body::before {
 }
 
 /* SECTION: main layout */
-.main-layout {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
+.main-layout { display: flex; gap: 16px; align-items: flex-start; }
 .content-area { flex: 1; min-width: 0; }
 .sidebar { width: 210px; flex-shrink: 0; }
 @media (max-width: 720px) {
@@ -214,17 +197,8 @@ body::before {
 
 /* SECTION: hero */
 .hero-panel { text-align: center; padding: 28px 20px; }
-.hero-welcome {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--accent-dark);
-  margin-bottom: 10px;
-}
-.hero-text {
-  font-size: 15px;
-  color: var(--text-body);
-  line-height: 1.8;
-}
+.hero-welcome { font-size: 19px; font-weight: 700; color: var(--accent-dark); margin-bottom: 10px; }
+.hero-text { font-size: 15px; color: var(--text-body); line-height: 1.8; }
 
 /* SECTION: article list */
 .article-list { list-style: none; }
@@ -236,13 +210,7 @@ body::before {
 }
 .article-item:last-child { border-bottom: none; }
 .article-item:hover { background: var(--bg-content-alt); }
-.article-item-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-  flex-wrap: wrap;
-}
+.article-item-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
 .article-badge {
   display: inline-block;
   padding: 1px 8px;
@@ -254,11 +222,7 @@ body::before {
 .article-badge.life { background: #E8EDE5; color: #4A7A5C; border-color: #8BAF96; }
 .article-badge.tech { background: #E5E8ED; color: #4A6080; border-color: #8B9AAF; }
 .article-badge.hobby { background: #EDE8E0; color: #8A6B40; border-color: #B8A882; }
-.article-date {
-  font-size: 12px;
-  color: var(--text-light);
-  font-family: var(--font-mono);
-}
+.article-date { font-size: 12px; color: var(--text-light); font-family: var(--font-mono); }
 .article-new {
   font-size: 11px;
   color: var(--text-link-hover);
@@ -266,19 +230,9 @@ body::before {
   animation: blink 1.2s steps(2) infinite;
 }
 @keyframes blink { 50% { opacity: 0.2; } }
-.article-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-link);
-  margin-bottom: 4px;
-}
+.article-title { font-size: 16px; font-weight: 700; color: var(--text-link); margin-bottom: 4px; }
 .article-item:hover .article-title { color: var(--text-link-hover); }
-.article-excerpt {
-  font-size: 13px;
-  color: var(--text-body);
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
+.article-excerpt { font-size: 13px; color: var(--text-body); line-height: 1.6; margin-bottom: 8px; }
 .article-tags { display: flex; gap: 4px; flex-wrap: wrap; }
 .article-tag {
   font-size: 11px;
@@ -288,13 +242,15 @@ body::before {
   border: 1px solid var(--border-light);
   border-radius: 3px;
 }
+.empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+}
 
 /* SECTION: article detail */
-.article-detail-header {
-  border-bottom: 1px solid var(--border-dark);
-  padding-bottom: 14px;
-  margin-bottom: 18px;
-}
+.article-detail-header { border-bottom: 1px solid var(--border-dark); padding-bottom: 14px; margin-bottom: 18px; }
 .back-link {
   display: inline-block;
   margin-bottom: 14px;
@@ -305,28 +261,16 @@ body::before {
   cursor: pointer;
 }
 .back-link:hover { color: var(--text-link-hover); text-decoration: underline; }
-.detail-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
+.detail-title { font-size: 22px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; line-height: 1.4; }
 .detail-meta {
-  font-size: 12px;
-  color: var(--text-light);
-  font-family: var(--font-mono);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  font-size: 12px; color: var(--text-light); font-family: var(--font-mono);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
 .detail-author { display: inline-flex; align-items: center; gap: 6px; }
 .author-avatar {
   width: 24px; height: 24px;
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  color: white;
-  font-size: 12px; font-weight: 700;
+  color: white; font-size: 12px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
 }
@@ -374,6 +318,7 @@ body::before {
   font-style: italic;
   border-radius: 0 4px 4px 0;
 }
+.article-content strong { color: var(--text-dark); }
 .detail-tags {
   margin-top: 24px; padding-top: 14px;
   border-top: 1px dashed var(--border-light);
@@ -381,10 +326,7 @@ body::before {
 }
 
 /* SECTION: comments */
-.comments-section {
-  margin-top: 28px; padding-top: 18px;
-  border-top: 1px solid var(--border-dark);
-}
+.comments-section { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--border-dark); }
 .comments-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--text-dark); }
 .comments-placeholder {
   background: var(--bg-content-alt);
@@ -395,7 +337,7 @@ body::before {
 }
 .placeholder-text { font-size: 14px; color: var(--text-body); margin-bottom: 4px; }
 .placeholder-hint { font-size: 12px; color: var(--text-light); }
-.giscus-container { min-height: 80px; }
+.comment-container { min-height: 80px; }
 
 /* SECTION: sidebar widgets */
 .widget { margin-bottom: 14px; }
@@ -418,8 +360,6 @@ body::before {
   font-size: 12px;
   color: var(--text-body);
 }
-
-/* profile */
 .profile-avatar {
   width: 44px; height: 44px;
   margin: 0 auto 8px;
@@ -443,42 +383,17 @@ body::before {
   display: flex;
   gap: 2px;
 }
-.counter-digit {
-  color: var(--accent-light);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 700;
-}
+.counter-digit { color: var(--accent-light); font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
 .counter-extra { text-align: center; margin-top: 8px; font-size: 11px; color: var(--text-light); }
 
-/* SECTION: playlist panel (netease embed) */
-.playlist-body {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.playlist-frame {
-  border: 1px solid var(--border-dark);
-  border-radius: 4px;
-  background: var(--bg-content-alt);
-  max-width: 100%;
-}
-.playlist-hint {
-  font-size: 11px;
-  color: var(--text-light);
-  margin-top: 8px;
-  text-align: center;
-  line-height: 1.6;
-}
+/* SECTION: playlist panel */
+.playlist-body { padding: 12px; display: flex; flex-direction: column; align-items: center; }
+.playlist-frame { border: 1px solid var(--border-dark); border-radius: 4px; background: var(--bg-content-alt); max-width: 100%; }
+.playlist-hint { font-size: 11px; color: var(--text-light); margin-top: 8px; text-align: center; line-height: 1.6; }
 
 /* quick links */
 .quick-links { list-style: none; font-size: 12px; line-height: 2; }
-.quick-links a {
-  color: var(--text-link);
-  text-decoration: none;
-  cursor: pointer;
-}
+.quick-links a { color: var(--text-link); text-decoration: none; cursor: pointer; }
 .quick-links a:hover { color: var(--text-link-hover); text-decoration: underline; }
 
 /* SECTION: about */
@@ -494,10 +409,7 @@ body::before {
 }
 .about-name { font-size: 20px; font-weight: 800; color: var(--accent-dark); margin-bottom: 4px; }
 .about-tagline { font-size: 13px; color: var(--text-light); font-style: italic; margin-bottom: 16px; }
-.about-bio {
-  font-size: 14px; color: var(--text-body); line-height: 1.8;
-  text-align: left; max-width: 480px; margin: 0 auto 16px;
-}
+.about-bio { font-size: 14px; color: var(--text-body); line-height: 1.8; text-align: left; max-width: 480px; margin: 0 auto 16px; }
 .about-interests { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 16px; }
 .interest-tag {
   padding: 3px 10px; font-size: 12px;
@@ -505,11 +417,7 @@ body::before {
   border: 1px solid var(--border-accent);
   border-radius: 3px; font-weight: 600;
 }
-.about-contact {
-  padding-top: 14px;
-  border-top: 1px dashed var(--border-light);
-  display: flex; gap: 16px; justify-content: center;
-}
+.about-contact { padding-top: 14px; border-top: 1px dashed var(--border-light); display: flex; gap: 16px; justify-content: center; }
 .contact-link { font-size: 13px; color: var(--text-link); text-decoration: none; font-family: var(--font-mono); cursor: pointer; }
 .contact-link:hover { color: var(--text-link-hover); text-decoration: underline; }
 
@@ -518,6 +426,127 @@ body::before {
 .guestbook-intro { text-align: center; margin-bottom: 20px; }
 .guestbook-title { font-size: 22px; font-weight: 800; color: var(--accent-dark); margin-bottom: 8px; }
 .guestbook-desc { font-size: 13px; color: var(--text-body); }
+
+/* SECTION: editor */
+.editor-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border-dark); }
+.editor-tab {
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  background: var(--bg-content-alt);
+  border: 1px solid var(--border-dark);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  margin-right: 4px;
+}
+.editor-tab.active { background: var(--accent); color: #fff; border-color: var(--accent-dark); }
+.editor-pane { display: none; padding: 16px; }
+.editor-pane.active { display: block; }
+
+.manage-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border-light);
+  flex-wrap: wrap;
+}
+.manage-row:last-child { border-bottom: none; }
+.manage-info { flex: 1; min-width: 160px; }
+.manage-title { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+.manage-meta { font-size: 11px; color: var(--text-light); font-family: var(--font-mono); margin-top: 2px; }
+.manage-actions { display: flex; gap: 6px; }
+
+.btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  background: var(--bg-content);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--accent-light); color: var(--accent-dark); }
+.btn-primary { background: var(--accent-dark); color: #fff; border-color: var(--accent-dark); }
+.btn-primary:hover { background: var(--accent); color: #fff; }
+.btn-danger { color: var(--danger); border-color: var(--danger); }
+.btn-danger:hover { background: var(--danger); color: #fff; }
+
+.field { margin-bottom: 14px; }
+.field-label { display: block; font-size: 12px; font-weight: 700; color: var(--text-body); margin-bottom: 4px; }
+.field-hint { font-size: 11px; color: var(--text-light); margin-top: 3px; line-height: 1.6; }
+.field input[type="text"], .field input[type="password"], .field input[type="date"],
+.field select, .field textarea {
+  width: 100%;
+  padding: 7px 9px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: #FFFDF8;
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+}
+.field textarea { font-family: var(--font-mono); line-height: 1.7; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(107,152,127,0.18);
+}
+.field-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.field-row .field { flex: 1; min-width: 140px; }
+
+.markup-help {
+  background: var(--bg-content-alt);
+  border: 1px dashed var(--border-light);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 11px;
+  color: var(--text-light);
+  line-height: 1.9;
+  font-family: var(--font-mono);
+  margin-bottom: 14px;
+}
+.markup-help b { color: var(--accent-dark); font-family: var(--font-body); }
+
+.editor-note {
+  background: #FBF6E9;
+  border-left: 3px solid var(--accent-warm);
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-body);
+  line-height: 1.8;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 14px;
+}
+.editor-toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.editor-status { font-size: 12px; color: var(--accent-dark); font-weight: 600; }
+.editor-status.error { color: var(--danger); }
+.preview-box {
+  background: #FFFDF8;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 16px;
+  margin-top: 14px;
+  display: none;
+}
+.preview-box.show { display: block; }
+.gate-box { text-align: center; padding: 28px 20px; }
+.gate-input {
+  max-width: 260px;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  background: #FFFDF8;
+  color: var(--text-dark);
+  margin: 0 6px 10px 0;
+}
+.gate-msg { font-size: 12px; color: var(--danger); min-height: 20px; margin-top: 6px; }
 
 /* SECTION: footer */
 .site-footer {
@@ -529,6 +558,7 @@ body::before {
   text-align: center;
 }
 .footer-text { font-size: 12px; color: var(--text-light); font-family: var(--font-mono); line-height: 1.8; }
+.footer-owner { margin-top: 8px; font-size: 12px; }
 
 /* SECTION: responsive */
 @media (max-width: 720px) {
@@ -538,6 +568,7 @@ body::before {
   .article-content { font-size: 14px; }
   .detail-title { font-size: 18px; }
   .sidebar { width: 100%; }
+  .editor-tab { padding: 8px 12px; font-size: 12px; }
 }
 
 /* SECTION: reduced motion */
@@ -553,14 +584,14 @@ body::before {
 
 <!-- SECTION: header -->
 <header class="site-header">
-  <h1 class="site-title"><span class="star">◇</span> 诚札记 <span class="star">◇</span></h1>
-  <p class="site-subtitle">~ AClaire's Personal Blog ~ 记录生活 · 技术 · 兴趣 ~</p>
+  <h1 class="site-title"><span class="star">◇</span> <span id="site-name">诚札记</span> <span class="star">◇</span></h1>
+  <p class="site-subtitle" id="site-subtitle">~ AClaire's Personal Blog ~</p>
   <div class="header-deco">
     <span class="deco-dot"></span><span class="deco-dot"></span><span class="deco-dot"></span><span class="deco-dot"></span><span class="deco-dot"></span>
   </div>
 </header>
 
-<!-- SECTION: nav — onclick 导航，不依赖 hashchange -->
+<!-- SECTION: nav -->
 <nav class="nav-bar">
   <a class="nav-link" data-route="/" onclick="navigateTo('/'); return false;">◇ 首页</a>
   <a class="nav-link" data-route="/about" onclick="navigateTo('/about'); return false;">关于博主</a>
@@ -569,9 +600,7 @@ body::before {
 
 <!-- SECTION: marquee -->
 <div class="marquee-bar">
-  <div class="marquee-text">
-    ◇ 欢迎来到诚札记！ ◇ 这里记录AClaire的日常分享、技术笔记与兴趣心得 ◇ 如有想法欢迎在留言板留下 ◇ 本站最后更新：2026年10月31日 ◇ 谢谢你的来访 ◇
-  </div>
+  <div class="marquee-text" id="marquee-text"></div>
 </div>
 
 <!-- SECTION: main layout -->
@@ -583,8 +612,8 @@ body::before {
       <div class="panel">
         <div class="panel-title"><span class="icon">◇</span> 公告栏</div>
         <div class="panel-body hero-panel">
-          <p class="hero-welcome">欢迎来到诚札记</p>
-          <p class="hero-text">这是 AClaire 的个人博客。这里记录日常所见、所思、所学——生活随笔、技术笔记、兴趣爱好，什么都写一点。随便逛逛，希望你能找到感兴趣的内容。</p>
+          <p class="hero-welcome" id="hero-welcome">欢迎来到诚札记</p>
+          <p class="hero-text" id="hero-text"></p>
         </div>
       </div>
       <div class="panel">
@@ -595,7 +624,7 @@ body::before {
             width="330" height="452"
             frameborder="no" border="0" marginwidth="0" marginheight="0"
             scrolling="no" allow="autoplay; clipboard-write; encrypted-media"
-            title="AClaire 的网易云歌单"
+            title="网易云歌单"
             loading="lazy"></iframe>
           <p class="playlist-hint">
             ◇ 这是 AClaire 常听的歌单，点播放键即可连续收听 ◇<br>
@@ -624,22 +653,14 @@ body::before {
       <div class="panel">
         <div class="panel-title"><span class="icon">◇</span> 关于博主</div>
         <div class="panel-body about-content">
-          <div class="about-avatar-lg">A</div>
-          <h2 class="about-name">AClaire</h2>
-          <p class="about-tagline">~ 记录生活，保持好奇 ~</p>
-          <div class="about-bio">
-            你好，我是 AClaire。这里是我的个人博客「诚札记」。我会在上面分享日常生活中的点滴感悟、学习技术的笔记，以及一些兴趣爱好方面的心得。没有什么宏大的主题，就是诚实地记录、札实地写下。如果你恰好路过，欢迎留下你的想法。
-          </div>
-          <div class="about-interests">
-            <span class="interest-tag">阅读</span>
-            <span class="interest-tag">编程</span>
-            <span class="interest-tag">城市漫步</span>
-            <span class="interest-tag">咖啡</span>
-            <span class="interest-tag">写作</span>
-          </div>
+          <div class="about-avatar-lg" id="about-avatar">A</div>
+          <h2 class="about-name" id="about-name">AClaire</h2>
+          <p class="about-tagline" id="about-tagline"></p>
+          <div class="about-bio" id="about-bio"></div>
+          <div class="about-interests" id="about-interests"></div>
           <div class="about-contact">
-            <a class="contact-link" onclick="return false">邮箱（待填写）</a>
-            <a class="contact-link" onclick="return false">GitHub（待填写）</a>
+            <a class="contact-link" onclick="return false" id="contact-email">邮箱（待填写）</a>
+            <a class="contact-link" onclick="return false" id="contact-github">GitHub（待填写）</a>
           </div>
         </div>
       </div>
@@ -654,7 +675,163 @@ body::before {
             <h1 class="guestbook-title">◇ 留言板 ◇</h1>
             <p class="guestbook-desc">无论是对文章的反馈、随便聊聊，还是想对我说的话，都欢迎在这里留下。</p>
           </div>
-          <div class="giscus-container" id="giscus-guestbook"></div>
+          <div class="comment-container" id="giscus-guestbook"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- editor view -->
+    <section id="view-editor" class="view">
+      <div class="panel" id="editor-gate">
+        <div class="panel-title"><span class="icon">◇</span> 博主入口</div>
+        <div class="panel-body gate-box">
+          <p style="font-size:14px; color:var(--text-body); margin-bottom:14px;">输入入口口令后可编辑博客内容</p>
+          <input class="gate-input" id="gate-pass" type="password" placeholder="入口口令" onkeydown="if(event.key==='Enter'){editorUnlock();}" />
+          <button class="btn btn-primary" onclick="editorUnlock()">进入</button>
+          <p class="gate-msg" id="gate-msg"></p>
+        </div>
+      </div>
+
+      <div id="editor-workspace" style="display:none">
+        <div class="panel">
+          <div class="panel-title"><span class="icon">◇</span> 内容管理</div>
+          <div class="editor-tabs">
+            <div class="editor-tab active" id="tab-btn-articles" onclick="switchTab('articles')">文章</div>
+            <div class="editor-tab" id="tab-btn-site" onclick="switchTab('site')">站点设置</div>
+          </div>
+
+          <!-- articles pane -->
+          <div class="editor-pane active" id="pane-articles">
+            <div class="editor-toolbar">
+              <button class="btn btn-primary" onclick="newArticle()">＋ 写新文章</button>
+              <button class="btn" onclick="renderManageList()">刷新列表</button>
+              <span class="editor-status" id="editor-status"></span>
+            </div>
+            <div id="manage-list"></div>
+
+            <div id="article-form" style="display:none; margin-top:18px; border-top:1px dashed var(--border-light); padding-top:16px;">
+              <div class="field">
+                <label class="field-label" for="f-title">标题</label>
+                <input type="text" id="f-title" placeholder="文章标题" />
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field-label" for="f-date">日期</label>
+                  <input type="date" id="f-date" />
+                </div>
+                <div class="field">
+                  <label class="field-label" for="f-category">分类</label>
+                  <select id="f-category">
+                    <option value="life">生活</option>
+                    <option value="tech">技术</option>
+                    <option value="hobby">兴趣</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-tags">标签</label>
+                <input type="text" id="f-tags" placeholder="用逗号分隔，如：生活, 随笔, 南昌" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-excerpt">摘要</label>
+                <textarea id="f-excerpt" rows="2" placeholder="留空则自动取正文开头"></textarea>
+                <p class="field-hint">显示在首页文章列表里，建议 40-60 字</p>
+              </div>
+              <div class="markup-help">
+                <b>正文可以这样写（不写标记就是普通段落）：</b><br>
+                # 一级小标题 &nbsp;&nbsp; ## 二级小标题<br>
+                **粗体** &nbsp;&nbsp; `行内代码`<br>
+                &gt; 引用 &nbsp;&nbsp; - 列表项 &nbsp;&nbsp; 1. 有序列表<br>
+                ``` 单独一行开始/结束代码块 ```<br>
+                空一行 = 分段
+              </div>
+              <div class="field">
+                <label class="field-label" for="f-content">正文</label>
+                <textarea id="f-content" rows="14" placeholder="在这里写正文……"></textarea>
+              </div>
+              <div class="editor-toolbar">
+                <button class="btn btn-primary" data-primary-action onclick="saveArticle()">保存文章</button>
+                <button class="btn" onclick="togglePreview()">预览效果</button>
+                <button class="btn" onclick="cancelEdit()">取消</button>
+              </div>
+              <div class="preview-box" id="preview-box">
+                <div class="article-content" id="preview-content"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- site settings pane -->
+          <div class="editor-pane" id="pane-site">
+            <div class="editor-note">
+              这里改的是全站文字信息。改完点「保存设置」，再点上方「导出并下载」，把文件上传到仓库覆盖后才会对访客生效。
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-name">站点名称</label>
+              <input type="text" id="s-name" placeholder="诚札记" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-author">博主署名</label>
+              <input type="text" id="s-author" placeholder="AClaire" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-tagline">一句话简介</label>
+              <input type="text" id="s-tagline" placeholder="记录生活，保持好奇" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-welcome">首页欢迎语标题</label>
+              <input type="text" id="s-welcome" placeholder="欢迎来到诚札记" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-intro">首页公告栏正文</label>
+              <textarea id="s-intro" rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-bio">关于我（正文，每行一段）</label>
+              <textarea id="s-bio" rows="5"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-interests">兴趣标签</label>
+              <input type="text" id="s-interests" placeholder="用逗号分隔，如：阅读, 编程, 咖啡" />
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label" for="s-email">联系邮箱</label>
+                <input type="text" id="s-email" placeholder="可留空" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="s-github">GitHub 地址</label>
+                <input type="text" id="s-github" placeholder="可留空" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="s-pass">入口口令</label>
+              <input type="text" id="s-pass" />
+              <p class="field-hint">只是挡住随手点进来的人，不是真正的密码保护（网页源码是公开的）。访客即使进来也改不了你的网站，改动只存在他们自己的浏览器里。</p>
+            </div>
+            <div class="editor-toolbar">
+              <button class="btn btn-primary" onclick="saveSite()">保存设置</button>
+              <span class="editor-status" id="site-status"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title"><span class="icon">◇</span> 发布上线</div>
+          <div class="panel-body">
+            <div class="editor-note">
+              <b>发布三步：</b><br>
+              1. 点下面按钮，浏览器会下载一个 <b>index.html</b><br>
+              2. 打开你的仓库，点 Add file → Upload files，把下载的文件拖进去<br>
+              3. 提交时选 Replace existing file，点 Commit changes<br>
+              等一两分钟，用 Ctrl+F5 强制刷新你的网站就能看到新内容。
+            </div>
+            <div class="editor-toolbar">
+              <button class="btn btn-primary" data-primary-action onclick="exportSite()">导出并下载 index.html</button>
+              <button class="btn" onclick="resetToPublished()">放弃本机改动</button>
+              <span class="editor-status" id="export-status"></span>
+            </div>
+            <p class="field-hint" id="draft-hint"></p>
+          </div>
         </div>
       </div>
     </section>
@@ -666,9 +843,9 @@ body::before {
     <div class="widget">
       <div class="widget-title">◇ 博主档案</div>
       <div class="widget-body">
-        <div class="profile-avatar">A</div>
-        <div class="profile-name">AClaire</div>
-        <div class="profile-tagline">记录生活，保持好奇</div>
+        <div class="profile-avatar" id="profile-avatar">A</div>
+        <div class="profile-name" id="profile-name">AClaire</div>
+        <div class="profile-tagline" id="profile-tagline"></div>
       </div>
     </div>
 
@@ -711,12 +888,203 @@ body::before {
 <!-- SECTION: footer -->
 <footer class="site-footer">
   <p class="footer-text">
-    ◇ 诚札记 ◇ AClaire's Personal Blog ◇<br>
-    &copy; 2026 AClaire · 用心记录，札实生活
+    ◇ <span id="footer-name">诚札记</span> ◇ <span id="footer-author">AClaire</span>'s Personal Blog ◇<br>
+    &copy; <span id="footer-year">2026</span> <span id="footer-author2">AClaire</span> · 用心记录，札实生活
+  </p>
+  <p class="footer-owner">
+    <a class="contact-link" onclick="navigateTo('/editor'); return false;">◇ 博主入口</a>
   </p>
 </footer>
 
 </div>
+
+<!-- SECTION: blog data (博主编辑器读写的唯一数据源，导出时会被重写) -->
+<script type="application/json" id="blog-data">
+{
+  "updatedAt": 0,
+  "site": {
+    "name": "诚札记",
+    "author": "AClaire",
+    "tagline": "记录生活，保持好奇",
+    "welcome": "欢迎来到诚札记",
+    "intro": "这是 AClaire 的个人博客。这里记录日常所见、所思、所学——生活随笔、技术笔记、兴趣爱好，什么都写一点。随便逛逛，希望你能找到感兴趣的内容。",
+    "bioLines": [
+      "你好，我是 AClaire。这里是我的个人博客「诚札记」。",
+      "我会在上面分享日常生活中的点滴感悟、学习技术的笔记，以及一些兴趣爱好方面的心得。",
+      "没有什么宏大的主题，就是诚实地记录、札实地写下。如果你恰好路过，欢迎留下你的想法。"
+    ],
+    "interests": ["阅读", "编程", "城市漫步", "咖啡", "写作"],
+    "email": "",
+    "github": "",
+    "editorPass": "chengzhaji"
+  },
+  "articles": [
+    {
+      "id": "001",
+      "title": "十月的南昌，桂香满城",
+      "date": "2026-10-28",
+      "category": "life",
+      "tags": ["生活", "随笔", "南昌"],
+      "excerpt": "南昌的秋天总是来得猝不及防。前几天还在穿短袖，一夜之间，满城的桂花就开了……",
+      "lines": [
+        "南昌的秋天总是来得猝不及防。",
+        "",
+        "前几天还在穿短袖，一夜之间，满城的桂花就开了。走在路上，空气里弥漫着甜丝丝的香气，让人忍不住深呼吸。",
+        "",
+        "小区楼下那棵老桂花树今年开得格外旺盛。细碎的金黄色小花缀满枝头，风一吹就簌簌落下，铺了一地碎金。",
+        "",
+        "我总喜欢在这个季节，泡一杯茶，坐在阳台上，让桂花的香气飘进来。这是属于南昌秋天独有的味道。",
+        "",
+        "> 如果你也在南昌，不妨走出家门，去赣江边走走，去老城区的巷子里转转。秋天的南昌，值得你慢慢感受。"
+      ]
+    },
+    {
+      "id": "002",
+      "title": "周末厨房：一碗家常汤面",
+      "date": "2026-10-25",
+      "category": "life",
+      "tags": ["生活", "美食"],
+      "excerpt": "周末的早晨，没有什么比一碗热腾腾的汤面更让人满足的了。做法很简单……",
+      "lines": [
+        "周末的早晨，没有什么比一碗热腾腾的汤面更让人满足的了。",
+        "",
+        "## 做法很简单",
+        "",
+        "先把骨头汤提前炖上，小火慢熬两个小时，汤色发白就对了。如果没有骨头汤，清水加一点生抽也能凑合。",
+        "",
+        "面条我习惯用手擀面，口感更筋道。超市买的挂面也行，煮的时候注意别过软。",
+        "",
+        "## 配菜随意",
+        "",
+        "- 几片青菜",
+        "- 半个番茄切丁",
+        "- 一个鸡蛋打散摊成蛋皮切丝",
+        "- 讲究一点的可以加几片卤牛肉",
+        "",
+        "最后调味：盐、少许白胡椒粉、几滴香油。汤要宽，面要少，这样每一口面都裹着汤汁。",
+        "",
+        "> 端上桌，热气升腾。一口汤下肚，整个周末都对了。"
+      ]
+    },
+    {
+      "id": "003",
+      "title": "CSS backdrop-filter：让界面透出层次感",
+      "date": "2026-10-22",
+      "category": "tech",
+      "tags": ["技术", "CSS", "前端"],
+      "excerpt": "backdrop-filter 是 CSS 中一个被低估的属性。它可以让元素背后的内容产生模糊效果……",
+      "lines": [
+        "`backdrop-filter` 是 CSS 中一个被低估的属性。它可以让元素背后的内容产生模糊、饱和度增强等效果，从而营造出\"毛玻璃\"的视觉质感。",
+        "",
+        "# 基本用法",
+        "",
+        "```",
+        ".glass-panel {",
+        "  background: rgba(255, 255, 255, 0.6);",
+        "  backdrop-filter: blur(30px) saturate(180%);",
+        "  -webkit-backdrop-filter: blur(30px) saturate(180%);",
+        "}",
+        "```",
+        "",
+        "# 几个关键点",
+        "",
+        "1. **透明度要适中**：背景色透明度建议在 50%-80% 之间。太低看不出效果，太高就变成了不透明色块。",
+        "2. **模糊值别太小**：blur(20px) 是起步，30px-40px 效果更好。低于 10px 基本看不出区别。",
+        "3. **别忘了 saturate**：饱和度增强让背景色彩透过玻璃后更鲜亮，这是真实玻璃的光学特性。",
+        "4. **兼容性**：Safari 需要加 -webkit- 前缀。目前主流浏览器都已支持。",
+        "5. **性能**：会触发 GPU 合成，大量使用可能影响性能。建议只在关键面板上使用。",
+        "",
+        "> 配合圆角、层叠阴影和微妙边框，就能做出很有质感的界面。"
+      ]
+    },
+    {
+      "id": "004",
+      "title": "Git rebase vs merge：我的日常选择",
+      "date": "2026-10-18",
+      "category": "tech",
+      "tags": ["技术", "Git"],
+      "excerpt": "这是一个经典的团队争论话题。说说我的理解和使用习惯……",
+      "lines": [
+        "这是一个经典的团队争论话题。说说我的理解和使用习惯。",
+        "",
+        "# merge 的好处",
+        "",
+        "merge 是最安全的操作。它保留完整的提交历史，不会修改已有提交。对于公共分支（团队共用的分支），永远用 merge。",
+        "",
+        "# rebase 的好处",
+        "",
+        "rebase 让提交历史变成一条直线，干净整洁。它通过\"重放\"提交来实现，所以会改变提交的 hash。",
+        "",
+        "# 我的日常流程",
+        "",
+        "```",
+        "# 在 feature 分支上开发",
+        "git checkout feature-branch",
+        "",
+        "# 开发完成后，先 rebase 到最新的 main",
+        "git fetch origin",
+        "git rebase origin/main",
+        "",
+        "# 如果有冲突，解决后 continue",
+        "git rebase --continue",
+        "",
+        "# rebase 完成后，合并到 main",
+        "git checkout main",
+        "git merge feature-branch",
+        "```",
+        "",
+        "> 一句话总结：自己的分支 rebase，公共的分支 merge。永远不会错。"
+      ]
+    },
+    {
+      "id": "005",
+      "title": "最近读完的三本书",
+      "date": "2026-10-14",
+      "category": "hobby",
+      "tags": ["读书", "兴趣"],
+      "excerpt": "趁着周末整理了一下最近读的书，挑三本印象最深的分享……",
+      "lines": [
+        "趁着周末整理了一下最近读的书，挑三本印象最深的分享。",
+        "",
+        "# 《置身事内》— 兰小欢",
+        "",
+        "讲中国政府与经济的入门书。用通俗的语言把地方政府的行为逻辑讲得很清楚，读完对很多政策背后的逻辑有了新的理解。推荐给所有想了解中国经济运作方式的人。",
+        "",
+        "# 《长安的荔枝》— 马伯庸",
+        "",
+        "历史小说，讲一个小吏如何在极限时间内把鲜荔枝从岭南运到长安。节奏紧凑，读起来停不下来。表面是物流故事，写的是职场和人性。",
+        "",
+        "# 《编程珠玑》— Jon Bentley",
+        "",
+        "技术经典，虽然年代久远但思路永不过时。每一章用一个实际问题引入，展示算法思维如何解决工程问题。适合反复读，每次都有新收获。",
+        "",
+        "> 读书这事儿，不贪多，读到好书比读很多书重要。"
+      ]
+    },
+    {
+      "id": "006",
+      "title": "老街巷里的咖啡馆地图",
+      "date": "2026-10-10",
+      "category": "hobby",
+      "tags": ["咖啡", "城市", "兴趣"],
+      "excerpt": "每个城市的老街巷里，都藏着一些值得探索的咖啡馆。南昌也不例外……",
+      "lines": [
+        "每个城市的老街巷里，都藏着一些值得探索的咖啡馆。",
+        "",
+        "南昌也不例外。这几年，万寿宫周边的老巷子里冒出了不少有意思的小店。",
+        "",
+        "有的藏在居民楼一楼，门口只有一块小木板写着店名；有的在巷子拐角处，不仔细看就会错过。但推门进去，往往是另一个世界。",
+        "",
+        "我喜欢在周末下午，带上书或电脑，随机走进一家没去过的店。点一杯手冲，坐在窗边，看来来往往的人。",
+        "",
+        "> 老街巷的好处在于，它们保留了城市的生活气息。咖啡馆和修鞋铺、裁缝店做邻居，这种混搭才是一个街区最真实的样子。",
+        "",
+        "如果你也有常去的街角咖啡馆，欢迎在留言板分享。"
+      ]
+    }
+  ]
+}
+</script>
 
 <script>
 // ============================================
@@ -732,121 +1100,294 @@ const GISCUS_CONFIG = {
   lang: 'zh-CN',
 };
 
-// SECTION: article data
-const articles = [
-  {
-    id: '001',
-    title: '十月的南昌，桂香满城',
-    date: '2026-10-28',
-    category: 'life',
-    categoryLabel: '生活',
-    tags: ['生活', '随笔', '南昌'],
-    excerpt: '南昌的秋天总是来得猝不及防。前几天还在穿短袖，一夜之间，满城的桂花就开了……',
-    isNew: true,
-    content: '<p>南昌的秋天总是来得猝不及防。</p><p>前几天还在穿短袖，一夜之间，满城的桂花就开了。走在路上，空气里弥漫着甜丝丝的香气，让人忍不住深呼吸。</p><p>小区楼下那棵老桂花树今年开得格外旺盛。细碎的金黄色小花缀满枝头，风一吹就簌簌落下，铺了一地碎金。</p><p>我总喜欢在这个季节，泡一杯茶，坐在阳台上，让桂花的香气飘进来。这是属于南昌秋天独有的味道。</p><blockquote>如果你也在南昌，不妨走出家门，去赣江边走走，去老城区的巷子里转转。秋天的南昌，值得你慢慢感受。</blockquote>'
-  },
-  {
-    id: '002',
-    title: '周末厨房：一碗家常汤面',
-    date: '2026-10-25',
-    category: 'life',
-    categoryLabel: '生活',
-    tags: ['生活', '美食'],
-    excerpt: '周末的早晨，没有什么比一碗热腾腾的汤面更让人满足的了。做法很简单……',
-    isNew: true,
-    content: '<p>周末的早晨，没有什么比一碗热腾腾的汤面更让人满足的了。</p><h3>做法很简单</h3><p>先把骨头汤提前炖上，小火慢熬两个小时，汤色发白就对了。如果没有骨头汤，清水加一点生抽也能凑合。</p><p>面条我习惯用手擀面，口感更筋道。超市买的挂面也行，煮的时候注意别过软。</p><h3>配菜随意</h3><ul><li>几片青菜</li><li>半个番茄切丁</li><li>一个鸡蛋打散摊成蛋皮切丝</li><li>讲究一点的可以加几片卤牛肉</li></ul><p>最后调味：盐、少许白胡椒粉、几滴香油。汤要宽，面要少，这样每一口面都裹着汤汁。</p><blockquote>端上桌，热气升腾。一口汤下肚，整个周末都对了。</blockquote>'
-  },
-  {
-    id: '003',
-    title: 'CSS backdrop-filter：让界面透出层次感',
-    date: '2026-10-22',
-    category: 'tech',
-    categoryLabel: '技术',
-    tags: ['技术', 'CSS', '前端'],
-    excerpt: 'backdrop-filter 是 CSS 中一个被低估的属性。它可以让元素背后的内容产生模糊效果……',
-    isNew: false,
-    content: '<p><code>backdrop-filter</code> 是 CSS 中一个被低估的属性。它可以让元素背后的内容产生模糊、饱和度增强等效果，从而营造出"毛玻璃"的视觉质感。</p><h2>基本用法</h2><pre><code>.glass-panel {\n  background: rgba(255, 255, 255, 0.6);\n  backdrop-filter: blur(30px) saturate(180%);\n  -webkit-backdrop-filter: blur(30px) saturate(180%);\n}</code></pre><h2>几个关键点</h2><ol><li><strong>透明度要适中</strong>：背景色透明度建议在 50%-80% 之间。太低看不出效果，太高就变成了不透明色块。</li><li><strong>模糊值别太小</strong>：<code>blur(20px)</code> 是起步，30px-40px 效果更好。低于 10px 基本看不出区别。</li><li><strong>别忘了 saturate</strong>：饱和度增强让背景色彩透过玻璃后更鲜亮，这是真实玻璃的光学特性。</li><li><strong>兼容性</strong>：Safari 需要加 <code>-webkit-</code> 前缀。目前主流浏览器都已支持。</li><li><strong>性能</strong>：<code>backdrop-filter</code> 会触发 GPU 合成，大量使用可能影响性能。建议只在关键面板上使用。</li></ol><blockquote>配合圆角、层叠阴影和微妙边框，就能做出很有质感的界面。</blockquote>'
-  },
-  {
-    id: '004',
-    title: 'Git rebase vs merge：我的日常选择',
-    date: '2026-10-18',
-    category: 'tech',
-    categoryLabel: '技术',
-    tags: ['技术', 'Git'],
-    excerpt: '这是一个经典的团队争论话题。说说我的理解和使用习惯……',
-    isNew: false,
-    content: '<p>这是一个经典的团队争论话题。说说我的理解和使用习惯。</p><h2>merge 的好处</h2><p>merge 是最安全的操作。它保留完整的提交历史，不会修改已有提交。对于公共分支（团队共用的分支），永远用 merge。</p><h2>rebase 的好处</h2><p>rebase 让提交历史变成一条直线，干净整洁。它通过"重放"提交来实现，所以会改变提交的 hash。</p><h2>我的日常流程</h2><pre><code># 在 feature 分支上开发\ngit checkout feature-branch\n\n# 开发完成后，先 rebase 到最新的 main\ngit fetch origin\ngit rebase origin/main\n\n# 如果有冲突，解决后 continue\ngit rebase --continue\n\n# rebase 完成后，合并到 main\ngit checkout main\ngit merge feature-branch</code></pre><blockquote>一句话总结：自己的分支 rebase，公共的分支 merge。永远不会错。</blockquote>'
-  },
-  {
-    id: '005',
-    title: '最近读完的三本书',
-    date: '2026-10-14',
-    category: 'hobby',
-    categoryLabel: '兴趣',
-    tags: ['读书', '兴趣'],
-    excerpt: '趁着周末整理了一下最近读的书，挑三本印象最深的分享……',
-    isNew: false,
-    content: '<p>趁着周末整理了一下最近读的书，挑三本印象最深的分享。</p><h2>《置身事内》— 兰小欢</h2><p>讲中国政府与经济的入门书。用通俗的语言把地方政府的行为逻辑讲得很清楚，读完对很多政策背后的逻辑有了新的理解。推荐给所有想了解中国经济运作方式的人。</p><h2>《长安的荔枝》— 马伯庸</h2><p>历史小说，讲一个小吏如何在极限时间内把鲜荔枝从岭南运到长安。节奏紧凑，读起来停不下来。表面是物流故事，写的是职场和人性。</p><h2>《编程珠玑》— Jon Bentley</h2><p>技术经典，虽然年代久远但思路永不过时。每一章用一个实际问题引入，展示算法思维如何解决工程问题。适合反复读，每次都有新收获。</p><blockquote>读书这事儿，不贪多，读到好书比读很多书重要。</blockquote>'
-  },
-  {
-    id: '006',
-    title: '老街巷里的咖啡馆地图',
-    date: '2026-10-10',
-    category: 'hobby',
-    categoryLabel: '兴趣',
-    tags: ['咖啡', '城市', '兴趣'],
-    excerpt: '每个城市的老街巷里，都藏着一些值得探索的咖啡馆。南昌也不例外……',
-    isNew: false,
-    content: '<p>每个城市的老街巷里，都藏着一些值得探索的咖啡馆。</p><p>南昌也不例外。这几年，万寿宫周边的老巷子里冒出了不少有意思的小店。</p><p>有的藏在居民楼一楼，门口只有一块小木板写着店名；有的在巷子拐角处，不仔细看就会错过。但推门进去，往往是另一个世界。</p><p>我喜欢在周末下午，带上书或电脑，随机走进一家没去过的店。点一杯手冲，坐在窗边，看来来往往的人。</p><blockquote>老街巷的好处在于，它们保留了城市的生活气息。咖啡馆和修鞋铺、裁缝店做邻居，这种混搭才是一个街区最真实的样子。</blockquote><p>如果你也有常去的街角咖啡馆，欢迎在留言板分享。</p>'
+// SECTION: data store — 文件数据 + 本机改动
+var STORE_KEY = 'czj_editor_v1';
+var fileData = null;
+var store = null;
+
+function parseFileData() {
+  var tag = document.getElementById('blog-data');
+  try {
+    return JSON.parse(tag.textContent);
+  } catch (e) {
+    return null;
   }
-];
+}
+
+function loadStore() {
+  fileData = parseFileData();
+  if (!fileData || !Array.isArray(fileData.articles)) {
+    fileData = { updatedAt: 0, site: {}, articles: [] };
+  }
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) { saved = null; }
+  // 本机改动比文件更新时才用本机版本，否则以文件为准（保证我给你的新版能覆盖旧改动）
+  if (saved && Array.isArray(saved.articles) && (saved.updatedAt || 0) >= (fileData.updatedAt || 0)) {
+    store = saved;
+  } else {
+    store = JSON.parse(JSON.stringify(fileData));
+    persistStore(false);
+  }
+  if (!store.site) { store.site = {}; }
+}
+
+function persistStore(bump) {
+  if (bump !== false) { store.updatedAt = Date.now(); }
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(store));
+  } catch (e) {
+    // 隐私模式下 localStorage 可能不可用，忽略即可
+  }
+}
+
+function hasLocalDraft() {
+  try {
+    return !!localStorage.getItem(STORE_KEY) && (store.updatedAt || 0) > (fileData.updatedAt || 0);
+  } catch (e) { return false; }
+}
+
+// SECTION: helpers
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function inlineMarkup(escaped) {
+  return escaped
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+}
+
+var CATEGORY_LABELS = { life: '生活', tech: '技术', hobby: '兴趣' };
+
+function categoryLabel(cat) { return CATEGORY_LABELS[cat] || '随笔'; }
+
+function sortedArticles() {
+  return store.articles.slice().sort(function(a, b) {
+    return String(b.date).localeCompare(String(a.date));
+  });
+}
+
+function isNewArticle(dateStr) {
+  if (!dateStr) return false;
+  var d = new Date(dateStr + 'T00:00:00');
+  if (isNaN(d.getTime())) return false;
+  var diff = Date.now() - d.getTime();
+  return diff >= 0 && diff <= 14 * 24 * 3600 * 1000;
+}
+
+function deriveExcerpt(lines) {
+  for (var i = 0; i < lines.length; i++) {
+    var line = String(lines[i] || '').trim();
+    if (!line) continue;
+    if (/^(#{1,2}\s|>\s|-\s|\d+\.\s|```)/.test(line)) continue;
+    var text = line.replace(/`([^`]+)`/g, '$1').replace(/\*\*([^*]+)\*\*/g, '$1');
+    return text.length > 56 ? text.slice(0, 56) + '……' : text + '……';
+  }
+  return '';
+}
+
+// SECTION: content renderer — 纯文本 + 可选标记
+function renderContent(lines) {
+  var src = Array.isArray(lines) ? lines : String(lines || '').split('\n');
+  var html = [];
+  var i = 0;
+  var listType = null;
+  var quoteBuf = [];
+
+  function closeList() {
+    if (listType) { html.push('</' + listType + '>'); listType = null; }
+  }
+  function closeQuote() {
+    if (quoteBuf.length) {
+      html.push('<blockquote>' + quoteBuf.map(function(t) {
+        return '<p>' + t + '</p>';
+      }).join('') + '</blockquote>');
+      quoteBuf = [];
+    }
+  }
+  function openList(type) {
+    if (listType && listType !== type) { closeList(); }
+    if (!listType) { html.push('<' + type + '>'); listType = type; }
+  }
+
+  while (i < src.length) {
+    var raw = String(src[i] == null ? '' : src[i]);
+    var line = raw.replace(/\s+$/, '');
+    var trimmed = line.trim();
+
+    // 代码块
+    if (/^```/.test(trimmed)) {
+      closeList(); closeQuote();
+      var codeLines = [];
+      i++;
+      while (i < src.length && !/^```/.test(String(src[i] || '').trim())) {
+        codeLines.push(escapeHtml(src[i]));
+        i++;
+      }
+      i++; // 跳过结束围栏
+      html.push('<pre><code>' + codeLines.join('\n') + '</code></pre>');
+      continue;
+    }
+
+    if (!trimmed) { closeList(); closeQuote(); i++; continue; }
+
+    if (/^##\s+/.test(trimmed)) {
+      closeList(); closeQuote();
+      html.push('<h3>' + inlineMarkup(escapeHtml(trimmed.replace(/^##\s+/, ''))) + '</h3>');
+      i++; continue;
+    }
+    if (/^#\s+/.test(trimmed)) {
+      closeList(); closeQuote();
+      html.push('<h2>' + inlineMarkup(escapeHtml(trimmed.replace(/^#\s+/, ''))) + '</h2>');
+      i++; continue;
+    }
+    if (/^>\s?/.test(trimmed)) {
+      closeList();
+      quoteBuf.push(inlineMarkup(escapeHtml(trimmed.replace(/^>\s?/, ''))));
+      i++; continue;
+    }
+    closeQuote();
+    if (/^[-*]\s+/.test(trimmed)) {
+      openList('ul');
+      html.push('<li>' + inlineMarkup(escapeHtml(trimmed.replace(/^[-*]\s+/, ''))) + '</li>');
+      i++; continue;
+    }
+    if (/^\d+[.、]\s*/.test(trimmed)) {
+      openList('ol');
+      html.push('<li>' + inlineMarkup(escapeHtml(trimmed.replace(/^\d+[.、]\s*/, ''))) + '</li>');
+      i++; continue;
+    }
+    closeList();
+    html.push('<p>' + inlineMarkup(escapeHtml(trimmed)) + '</p>');
+    i++;
+  }
+  closeList(); closeQuote();
+  return html.join('\n');
+}
+
+// SECTION: render site chrome from data
+function renderSite() {
+  var s = store.site || {};
+  var name = s.name || '诚札记';
+  var author = s.author || 'AClaire';
+  document.title = '★ ' + name + ' ★ ' + author + "'s Personal Blog";
+  document.getElementById('site-name').textContent = name;
+  document.getElementById('site-subtitle').textContent = '~ ' + author + "'s Personal Blog ~ 记录生活 · 技术 · 兴趣 ~";
+  document.getElementById('hero-welcome').textContent = s.welcome || ('欢迎来到' + name);
+  document.getElementById('hero-text').textContent = s.intro || '';
+  document.getElementById('marquee-text').textContent =
+    '◇ 欢迎来到' + name + '！ ◇ 这里记录' + author + '的日常分享、技术笔记与兴趣心得 ◇ 如有想法欢迎在留言板留下 ◇ 谢谢你的来访 ◇';
+
+  var initial = author ? author.charAt(0).toUpperCase() : 'A';
+  document.getElementById('profile-avatar').textContent = initial;
+  document.getElementById('profile-name').textContent = author;
+  document.getElementById('profile-tagline').textContent = s.tagline || '';
+  document.getElementById('about-avatar').textContent = initial;
+  document.getElementById('about-name').textContent = author;
+  document.getElementById('about-tagline').textContent = '~ ' + (s.tagline || '') + ' ~';
+  document.getElementById('about-bio').innerHTML = renderContent(s.bioLines || []);
+
+  var interests = Array.isArray(s.interests) ? s.interests : [];
+  document.getElementById('about-interests').innerHTML = interests.map(function(t) {
+    return '<span class="interest-tag">' + escapeHtml(t) + '</span>';
+  }).join('');
+
+  var emailEl = document.getElementById('contact-email');
+  if (s.email) {
+    emailEl.textContent = s.email;
+    emailEl.setAttribute('href', 'mailto:' + s.email);
+    emailEl.onclick = null;
+  } else {
+    emailEl.textContent = '邮箱（待填写）';
+    emailEl.setAttribute('href', '#');
+    emailEl.onclick = function() { return false; };
+  }
+  var ghEl = document.getElementById('contact-github');
+  if (s.github) {
+    ghEl.textContent = 'GitHub';
+    ghEl.setAttribute('href', s.github);
+    ghEl.setAttribute('target', '_blank');
+    ghEl.setAttribute('rel', 'noopener');
+    ghEl.onclick = null;
+  } else {
+    ghEl.textContent = 'GitHub（待填写）';
+    ghEl.setAttribute('href', '#');
+    ghEl.onclick = function() { return false; };
+  }
+
+  document.getElementById('footer-name').textContent = name;
+  document.getElementById('footer-author').textContent = author;
+  document.getElementById('footer-author2').textContent = author;
+  document.getElementById('footer-year').textContent = String(new Date().getFullYear());
+}
 
 // SECTION: render article list
 function renderArticleList() {
   var list = document.getElementById('article-list');
-  list.innerHTML = articles.map(function(article) {
-    var newBadge = article.isNew ? ' <span class="article-new">[NEW]</span>' : '';
-    return '<li class="article-item" data-primary-action onclick="goToArticle(\'' + article.id + '\')">' +
+  var items = sortedArticles();
+  if (items.length === 0) {
+    list.innerHTML = '<li class="empty-state">还没有文章，点页脚「博主入口」去写第一篇吧。</li>';
+    return;
+  }
+  list.innerHTML = items.map(function(article) {
+    var newBadge = isNewArticle(article.date) ? ' <span class="article-new">[NEW]</span>' : '';
+    var excerpt = article.excerpt || deriveExcerpt(article.lines || []);
+    var tags = Array.isArray(article.tags) ? article.tags : [];
+    return '<li class="article-item" data-primary-action onclick="goToArticle(\'' + escapeHtml(article.id) + '\')">' +
       '<div class="article-item-header">' +
-        '<span class="article-badge ' + article.category + '">' + article.categoryLabel + '</span>' +
-        '<span class="article-date">[' + article.date + ']</span>' +
+        '<span class="article-badge ' + escapeHtml(article.category) + '">' + escapeHtml(categoryLabel(article.category)) + '</span>' +
+        '<span class="article-date">[' + escapeHtml(article.date) + ']</span>' +
         newBadge +
       '</div>' +
-      '<div class="article-title">' + article.title + '</div>' +
-      '<div class="article-excerpt">' + article.excerpt + '</div>' +
+      '<div class="article-title">' + escapeHtml(article.title) + '</div>' +
+      '<div class="article-excerpt">' + escapeHtml(excerpt) + '</div>' +
       '<div class="article-tags">' +
-        article.tags.map(function(t) { return '<span class="article-tag">' + t + '</span>'; }).join('') +
+        tags.map(function(t) { return '<span class="article-tag">' + escapeHtml(t) + '</span>'; }).join('') +
       '</div>' +
     '</li>';
   }).join('');
 }
 
+function findArticle(id) {
+  for (var i = 0; i < store.articles.length; i++) {
+    if (store.articles[i].id === id) { return store.articles[i]; }
+  }
+  return null;
+}
+
 // SECTION: render article detail
 function renderArticleDetail(article) {
+  var author = (store.site && store.site.author) || 'AClaire';
+  var initial = author.charAt(0).toUpperCase();
+  var tags = Array.isArray(article.tags) ? article.tags : [];
   var container = document.getElementById('article-detail-container');
   container.innerHTML =
     '<a class="back-link" onclick="navigateTo(\'/\'); return false;">&lt;&lt; 返回首页</a>' +
     '<div class="article-detail-header">' +
-      '<h1 class="detail-title">' + article.title + '</h1>' +
+      '<h1 class="detail-title">' + escapeHtml(article.title) + '</h1>' +
       '<div class="detail-meta">' +
         '<span class="detail-author">' +
-          '<span class="author-avatar">A</span>' +
-          '<span>AClaire</span>' +
+          '<span class="author-avatar">' + escapeHtml(initial) + '</span>' +
+          '<span>' + escapeHtml(author) + '</span>' +
         '</span>' +
         '<span>|</span>' +
-        '<span>' + article.date + '</span>' +
+        '<span>' + escapeHtml(article.date) + '</span>' +
         '<span>|</span>' +
-        '<span class="article-badge ' + article.category + '">' + article.categoryLabel + '</span>' +
+        '<span class="article-badge ' + escapeHtml(article.category) + '">' + escapeHtml(categoryLabel(article.category)) + '</span>' +
       '</div>' +
     '</div>' +
-    '<div class="article-content">' + article.content + '</div>' +
+    '<div class="article-content">' + renderContent(article.lines || []) + '</div>' +
     '<div class="detail-tags">' +
-      article.tags.map(function(t) { return '<span class="article-tag">' + t + '</span>'; }).join('') +
+      tags.map(function(t) { return '<span class="article-tag">' + escapeHtml(t) + '</span>'; }).join('') +
     '</div>' +
     '<div class="comments-section">' +
       '<h3 class="comments-title">◇ 评论 ◇</h3>' +
-      '<div class="giscus-container" id="giscus-article"></div>' +
+      '<div class="comment-container" id="giscus-article"></div>' +
     '</div>';
   loadGiscus('giscus-article', 'article-' + article.id);
 }
@@ -863,10 +1404,10 @@ function loadGiscus(containerId, term) {
       '</div>';
     return;
   }
-  // 先卸载页面上已存在的 giscus 实例，防止重复挂载
-  document.querySelectorAll('.giscus-container iframe').forEach(function(frame) {
-    try { frame.contentWindow.postMessage('giscus:remove-frame', '*'); } catch(e) {}
-    frame.remove();
+  // 卸载已存在的实例，防止切换页面时重复挂载
+  document.querySelectorAll('.comment-container iframe').forEach(function(frame) { frame.remove(); });
+  document.querySelectorAll('script.giscus, .giscus').forEach(function(node) {
+    if (node.tagName === 'IFRAME' || node.classList.contains('giscus-frame')) { node.remove(); }
   });
   var script = document.createElement('script');
   script.src = 'https://giscus.app/client.js';
@@ -888,7 +1429,7 @@ function loadGiscus(containerId, term) {
   container.appendChild(script);
 }
 
-// SECTION: navigation — onclick 驱动，双重保障
+// SECTION: navigation
 function navigateTo(path) {
   window.location.hash = '#' + path;
   navigate(path);
@@ -897,20 +1438,16 @@ function navigateTo(path) {
 function navigate(path) {
   if (!path) {
     path = window.location.hash.slice(1) || '/';
-    if (path.charAt(0) !== '/') path = '/' + path;
+    if (path.charAt(0) !== '/') { path = '/' + path; }
   }
-
   var parts = path.split('/').filter(Boolean);
 
-  // hide all views
   var views = document.querySelectorAll('.view');
   for (var i = 0; i < views.length; i++) { views[i].classList.remove('active'); }
-
-  // clear nav active
   var navLinks = document.querySelectorAll('.nav-link');
   for (var j = 0; j < navLinks.length; j++) { navLinks[j].classList.remove('active'); }
 
-  if (parts.length === 0 || (parts.length === 1 && parts[0] === '')) {
+  if (parts.length === 0) {
     document.getElementById('view-home').classList.add('active');
     setActiveNav('/');
   } else if (parts[0] === 'about') {
@@ -920,12 +1457,11 @@ function navigate(path) {
     document.getElementById('view-guestbook').classList.add('active');
     setActiveNav('/guestbook');
     loadGiscus('giscus-guestbook', 'guestbook');
+  } else if (parts[0] === 'editor') {
+    document.getElementById('view-editor').classList.add('active');
+    onEnterEditor();
   } else if (parts[0] === 'article') {
-    var articleId = parts[1];
-    var article = null;
-    for (var k = 0; k < articles.length; k++) {
-      if (articles[k].id === articleId) { article = articles[k]; break; }
-    }
+    var article = findArticle(parts[1]);
     if (article) {
       renderArticleDetail(article);
       document.getElementById('view-article').classList.add('active');
@@ -943,47 +1479,399 @@ function navigate(path) {
 function setActiveNav(route) {
   var navLinks = document.querySelectorAll('.nav-link');
   for (var i = 0; i < navLinks.length; i++) {
-    if (navLinks[i].getAttribute('data-route') === route) {
-      navLinks[i].classList.add('active');
-    }
+    if (navLinks[i].getAttribute('data-route') === route) { navLinks[i].classList.add('active'); }
   }
 }
 
 function goToArticle(id) { navigateTo('/article/' + id); }
 
 // SECTION: visitor counter — localStorage 真实计数
-function initVisitorCounter() {
+var visitTotal = 0;
+var visitToday = 0;
+
+function bumpVisit() {
   var key = 'chengzhaji_visits';
   var todayKey = 'chengzhaji_today';
   var todayDate = new Date().toDateString();
-  var total = parseInt(localStorage.getItem(key) || '0', 10) + 1;
-  var today = localStorage.getItem(todayKey);
-  if (today && today.split('|')[0] === todayDate) {
-    today = parseInt(today.split('|')[1], 10) + 1;
-  } else {
-    today = 1;
+  try {
+    visitTotal = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+    var todayRaw = localStorage.getItem(todayKey);
+    if (todayRaw && todayRaw.split('|')[0] === todayDate) {
+      visitToday = parseInt(todayRaw.split('|')[1], 10) + 1;
+    } else {
+      visitToday = 1;
+    }
+    localStorage.setItem(key, String(visitTotal));
+    localStorage.setItem(todayKey, todayDate + '|' + visitToday);
+  } catch (e) {
+    visitTotal = 1; visitToday = 1;
   }
-  localStorage.setItem(key, String(total));
-  localStorage.setItem(todayKey, todayDate + '|' + today);
+}
 
-  // render digits
-  var str = String(total);
+function renderCounter() {
+  var str = String(visitTotal);
   while (str.length < 6) { str = '0' + str; }
   var digitsHtml = '';
   for (var i = 0; i < str.length; i++) {
     digitsHtml += '<span class="counter-digit">' + str[i] + '</span>';
   }
   document.getElementById('counter-digits').innerHTML = digitsHtml;
-  document.getElementById('counter-extra').innerHTML = '今日：' + String(today).padStart(3, '0');
+  document.getElementById('counter-extra').innerHTML = '今日：' + String(visitToday).padStart(3, '0');
 }
 
-// SECTION: playlist — 歌单由网易云官方 iframe 提供，无需本地播放逻辑
+// SECTION: editor logic
+var editorUnlocked = false;
+var editingId = null;   // null = 新建文章
+
+function onEnterEditor() {
+  if (editorUnlocked) {
+    showWorkspace();
+  } else {
+    document.getElementById('editor-gate').style.display = '';
+    document.getElementById('editor-workspace').style.display = 'none';
+    document.getElementById('gate-msg').textContent = '';
+  }
+}
+
+function editorUnlock() {
+  var input = document.getElementById('gate-pass');
+  var msg = document.getElementById('gate-msg');
+  var expected = (store.site && store.site.editorPass) || '';
+  if (!expected) { msg.textContent = '未设置入口口令，请检查站点设置'; return; }
+  if (input.value.trim() !== expected) {
+    msg.textContent = '口令不对，请重试';
+    input.value = '';
+    input.focus();
+    return;
+  }
+  editorUnlocked = true;
+  input.value = '';
+  showWorkspace();
+}
+
+function showWorkspace() {
+  document.getElementById('editor-gate').style.display = 'none';
+  document.getElementById('editor-workspace').style.display = '';
+  renderManageList();
+  fillSiteForm();
+  updateDraftHint();
+}
+
+function switchTab(name) {
+  var isArticles = name === 'articles';
+  document.getElementById('tab-btn-articles').classList.toggle('active', isArticles);
+  document.getElementById('tab-btn-site').classList.toggle('active', !isArticles);
+  document.getElementById('pane-articles').classList.toggle('active', isArticles);
+  document.getElementById('pane-site').classList.toggle('active', !isArticles);
+}
+
+function todayStr() {
+  var d = new Date();
+  var m = String(d.getMonth() + 1).padStart(2, '0');
+  var day = String(d.getDate()).padStart(2, '0');
+  return d.getFullYear() + '-' + m + '-' + day;
+}
+
+function newArticle() {
+  editingId = null;
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-date').value = todayStr();
+  document.getElementById('f-category').value = 'life';
+  document.getElementById('f-tags').value = '';
+  document.getElementById('f-excerpt').value = '';
+  document.getElementById('f-content').value = '';
+  document.getElementById('article-form').style.display = '';
+  document.getElementById('preview-box').classList.remove('show');
+  setStatus('editor-status', '');
+  document.getElementById('f-title').focus();
+  document.getElementById('article-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function editArticle(id) {
+  var article = findArticle(id);
+  if (!article) return;
+  editingId = id;
+  document.getElementById('f-title').value = article.title || '';
+  document.getElementById('f-date').value = article.date || todayStr();
+  document.getElementById('f-category').value = article.category || 'life';
+  document.getElementById('f-tags').value = (article.tags || []).join(', ');
+  document.getElementById('f-excerpt').value = article.excerpt || '';
+  document.getElementById('f-content').value = (article.lines || []).join('\n');
+  document.getElementById('article-form').style.display = '';
+  document.getElementById('preview-box').classList.remove('show');
+  setStatus('editor-status', '正在编辑：' + (article.title || ''));
+  document.getElementById('article-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function parseTags(text) {
+  return String(text || '').split(/[,，]/)
+    .map(function(t) { return t.trim(); })
+    .filter(function(t) { return t.length > 0; });
+}
+
+function saveArticle() {
+  var title = document.getElementById('f-title').value.trim();
+  var date = document.getElementById('f-date').value || todayStr();
+  var category = document.getElementById('f-category').value;
+  var tags = parseTags(document.getElementById('f-tags').value);
+  var excerpt = document.getElementById('f-excerpt').value.trim();
+  var contentText = document.getElementById('f-content').value;
+  var lines = String(contentText).split('\n');
+
+  if (!title) { setStatus('editor-status', '标题不能为空', true); return; }
+  var hasText = lines.some(function(l) { return String(l).trim().length > 0; });
+  if (!hasText) { setStatus('editor-status', '正文不能为空', true); return; }
+
+  var record = {
+    title: title,
+    date: date,
+    category: category,
+    tags: tags,
+    excerpt: excerpt,
+    lines: lines,
+  };
+
+  if (editingId) {
+    var existing = findArticle(editingId);
+    if (existing) {
+      record.id = editingId;
+      for (var i = 0; i < store.articles.length; i++) {
+        if (store.articles[i].id === editingId) { store.articles[i] = record; break; }
+      }
+    }
+  } else {
+    record.id = 'a' + Date.now().toString(36);
+    store.articles.push(record);
+  }
+
+  persistStore();
+  editingId = null;
+  document.getElementById('article-form').style.display = 'none';
+  document.getElementById('preview-box').classList.remove('show');
+  renderManageList();
+  renderArticleList();
+  setStatus('editor-status', '已保存到本机，记得点「导出并下载」上传上线');
+  updateDraftHint();
+}
+
+function deleteArticle(id) {
+  var article = findArticle(id);
+  if (!article) return;
+  if (!window.confirm('确定删除《' + (article.title || id) + '》吗？\n\n此操作只删除本机数据，导出上传后才会从网站移除。')) {
+    return;
+  }
+  store.articles = store.articles.filter(function(a) { return a.id !== id; });
+  persistStore();
+  if (editingId === id) {
+    editingId = null;
+    document.getElementById('article-form').style.display = 'none';
+  }
+  renderManageList();
+  renderArticleList();
+  setStatus('editor-status', '已删除，记得导出上传');
+  updateDraftHint();
+}
+
+function cancelEdit() {
+  editingId = null;
+  document.getElementById('article-form').style.display = 'none';
+  document.getElementById('preview-box').classList.remove('show');
+  setStatus('editor-status', '');
+}
+
+function togglePreview() {
+  var box = document.getElementById('preview-box');
+  var willShow = !box.classList.contains('show');
+  if (willShow) {
+    var lines = String(document.getElementById('f-content').value).split('\n');
+    document.getElementById('preview-content').innerHTML = renderContent(lines) ||
+      '<p style="color:var(--text-light)">（正文还是空的）</p>';
+  }
+  box.classList.toggle('show', willShow);
+}
+
+function renderManageList() {
+  var box = document.getElementById('manage-list');
+  var items = sortedArticles();
+  if (items.length === 0) {
+    box.innerHTML = '<div class="empty-state">还没有文章，点上方「写新文章」开始。</div>';
+    return;
+  }
+  box.innerHTML = items.map(function(a) {
+    return '<div class="manage-row">' +
+      '<div class="manage-info">' +
+        '<div class="manage-title">' + escapeHtml(a.title) + '</div>' +
+        '<div class="manage-meta">' + escapeHtml(a.date) + ' · ' + escapeHtml(categoryLabel(a.category)) +
+          ' · ' + (a.tags || []).length + ' 个标签</div>' +
+      '</div>' +
+      '<div class="manage-actions">' +
+        '<button class="btn" onclick="editArticle(\'' + escapeHtml(a.id) + '\')">编辑</button>' +
+        '<button class="btn btn-danger" onclick="deleteArticle(\'' + escapeHtml(a.id) + '\')">删除</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function fillSiteForm() {
+  var s = store.site || {};
+  document.getElementById('s-name').value = s.name || '';
+  document.getElementById('s-author').value = s.author || '';
+  document.getElementById('s-tagline').value = s.tagline || '';
+  document.getElementById('s-welcome').value = s.welcome || '';
+  document.getElementById('s-intro').value = s.intro || '';
+  document.getElementById('s-bio').value = (s.bioLines || []).join('\n');
+  document.getElementById('s-interests').value = (s.interests || []).join(', ');
+  document.getElementById('s-email').value = s.email || '';
+  document.getElementById('s-github').value = s.github || '';
+  document.getElementById('s-pass').value = s.editorPass || '';
+}
+
+function saveSite() {
+  var name = document.getElementById('s-name').value.trim();
+  var author = document.getElementById('s-author').value.trim();
+  var pass = document.getElementById('s-pass').value.trim();
+  if (!name) { setStatus('site-status', '站点名称不能为空', true); return; }
+  if (!author) { setStatus('site-status', '博主署名不能为空', true); return; }
+  if (!pass) { setStatus('site-status', '入口口令不能为空', true); return; }
+
+  store.site = {
+    name: name,
+    author: author,
+    tagline: document.getElementById('s-tagline').value.trim(),
+    welcome: document.getElementById('s-welcome').value.trim(),
+    intro: document.getElementById('s-intro').value.trim(),
+    bioLines: String(document.getElementById('s-bio').value).split('\n'),
+    interests: parseTags(document.getElementById('s-interests').value),
+    email: document.getElementById('s-email').value.trim(),
+    github: document.getElementById('s-github').value.trim(),
+    editorPass: pass,
+  };
+  persistStore();
+  renderSite();
+  renderArticleList();
+  setStatus('site-status', '已保存到本机，记得点「导出并下载」上传上线');
+  updateDraftHint();
+}
+
+function setStatus(id, text, isError) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text || '';
+  el.classList.toggle('error', !!isError);
+}
+
+function updateDraftHint() {
+  var el = document.getElementById('draft-hint');
+  if (!el) return;
+  if (hasLocalDraft()) {
+    var when = store.updatedAt ? new Date(store.updatedAt).toLocaleString('zh-CN') : '';
+    el.textContent = '当前有未上传的本机改动（最后保存：' + when + '）。导出上传前，访客看到的仍是线上旧内容。';
+  } else {
+    el.textContent = '本机内容与线上文件一致，没有待发布的改动。';
+  }
+}
+
+// SECTION: export — 生成可上传的 index.html
+function exportSite() {
+  try {
+    var clone = document.documentElement.cloneNode(true);
+
+    // 1. 写入最新数据
+    var dataTag = clone.querySelector('#blog-data');
+    if (!dataTag) { setStatus('export-status', '导出失败：找不到数据区', true); return; }
+    var exportData = JSON.parse(JSON.stringify(store));
+    exportData.updatedAt = Date.now();
+    store.updatedAt = exportData.updatedAt;
+    persistStore(false);
+    dataTag.textContent = '\n' + JSON.stringify(exportData, null, 2)
+      .replace(/<\/script/gi, '<\\/script') + '\n';
+
+    // 2. 复位所有运行时状态，保证导出文件是干净的初始状态
+    clone.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
+    var home = clone.querySelector('#view-home');
+    if (home) { home.classList.add('active'); }
+    clone.querySelectorAll('.nav-link').forEach(function(l) { l.classList.remove('active'); });
+    var homeNav = clone.querySelector('.nav-link[data-route="/"]');
+    if (homeNav) { homeNav.classList.add('active'); }
+
+    var listEl = clone.querySelector('#article-list');
+    if (listEl) { listEl.innerHTML = ''; }
+    var detailEl = clone.querySelector('#article-detail-container');
+    if (detailEl) { detailEl.innerHTML = ''; }
+
+    // 清掉评论组件与外链脚本，避免把运行时插入的 giscus 带进导出文件
+    clone.querySelectorAll('.comment-container').forEach(function(c) { c.innerHTML = ''; });
+    clone.querySelectorAll('script[src*="giscus.app"]').forEach(function(s) { s.remove(); });
+    clone.querySelectorAll('iframe.giscus-frame, .giscus').forEach(function(n) { n.remove(); });
+
+    // 复位编辑器界面
+    var gate = clone.querySelector('#editor-gate');
+    if (gate) { gate.style.display = ''; }
+    var ws = clone.querySelector('#editor-workspace');
+    if (ws) { ws.style.display = 'none'; }
+    var form = clone.querySelector('#article-form');
+    if (form) { form.style.display = 'none'; }
+    var pbox = clone.querySelector('#preview-box');
+    if (pbox) { pbox.classList.remove('show'); }
+    ['gate-pass', 'f-title', 'f-tags', 'f-excerpt', 'f-content', 'gate-msg',
+     'editor-status', 'site-status', 'export-status', 'manage-list',
+     'counter-digits', 'counter-extra', 'draft-hint'].forEach(function(id) {
+      var el = clone.querySelector('#' + id);
+      if (el) { el.value = ''; el.textContent = ''; }
+    });
+    ['tab-btn-articles', 'pane-articles'].forEach(function(id) {
+      var el = clone.querySelector('#' + id);
+      if (el) { el.classList.add('active'); }
+    });
+    ['tab-btn-site', 'pane-site'].forEach(function(id) {
+      var el = clone.querySelector('#' + id);
+      if (el) { el.classList.remove('active'); }
+    });
+
+    var html = '<!DOCTYPE html>\n<html lang="zh-CN">\n' + clone.innerHTML + '\n</html>\n';
+
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'index.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
+
+    setStatus('export-status', '已导出 index.html，请到仓库上传覆盖');
+    updateDraftHint();
+  } catch (e) {
+    setStatus('export-status', '导出失败：' + (e && e.message ? e.message : e), true);
+  }
+}
+
+function resetToPublished() {
+  if (!window.confirm('确定放弃本机改动吗？\n\n编辑器里保存但尚未导出的文章和设置都会被丢弃，恢复成线上文件的版本。')) {
+    return;
+  }
+  try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+  store = JSON.parse(JSON.stringify(fileData));
+  persistStore(false);
+  renderSite();
+  renderArticleList();
+  renderManageList();
+  fillSiteForm();
+  setStatus('editor-status', '');
+  setStatus('site-status', '');
+  setStatus('export-status', '已恢复为线上版本');
+  updateDraftHint();
+}
 
 // SECTION: init
 window.addEventListener('hashchange', function() { navigate(); });
 window.addEventListener('DOMContentLoaded', function() {
+  loadStore();
+  renderSite();
   renderArticleList();
-  initVisitorCounter();
+  bumpVisit();
+  renderCounter();
   navigate();
 });
 </script>
