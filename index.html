@@ -1336,15 +1336,23 @@ function mountGiscus(container, term, attempt) {
     }
   };
   container.appendChild(script);
-  // 看门狗：组件脚本加载后若迟迟没有渲染出内容，给出可重试的提示而非空白
-  setTimeout(function() {
-    var rendered = container.querySelector('iframe') ||
-                   container.querySelector('.giscus') ||
-                   container.querySelector('.giscus-widget');
-    if (loaded && !rendered && container.innerHTML.trim() === '') {
-      showCommentFallback(container, term, '评论组件超时未渲染，请重试或检查浏览器插件。');
-    }
-  }, 9000);
+  // 看门狗：组件脚本被插件静默拦截时不会触发 onload/onerror，
+  // 表现为容器长期空白或 iframe 高度为零。分两次检查，确认失败后给出可操作的提示。
+  function watch(attemptLeft) {
+    setTimeout(function() {
+      if (!container.isConnected) return;
+      if (container.querySelector('.comments-placeholder')) return; // 已有提示，不覆盖
+      var frame = container.querySelector('iframe');
+      var hasUi = !!container.querySelector('.giscus, .giscus-widget');
+      var renderedOk = hasUi || (frame && frame.offsetHeight >= 50);
+      if (!renderedOk) {
+        if (attemptLeft > 0) { watch(attemptLeft - 1); return; }
+        showCommentFallback(container, term,
+          '评论区没有渲染成功。最常见的原因是广告拦截/隐私插件拦住了评论组件，其次是当前网络访问 GitHub 不稳定。请在插件中放行本页后重试，或点这里重试。');
+      }
+    }, 8000);
+  }
+  watch(1);
 }
 
 // SECTION: navigation
