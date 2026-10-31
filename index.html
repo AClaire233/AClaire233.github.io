@@ -723,11 +723,11 @@ body::before {
 // Giscus 评论系统配置
 // ============================================
 const GISCUS_CONFIG = {
-  enabled: false,
-  repo: '',
-  repoId: '',
+  enabled: true,
+  repo: 'AClaire233/AClaire233.github.io',
+  repoId: 'R_kgDOVd_s_Q',
   category: 'Announcements',
-  categoryId: '',
+  categoryId: 'DIC_kwDOVd_s_c4DKElG',
   theme: 'light',
   lang: 'zh-CN',
 };
@@ -863,6 +863,11 @@ function loadGiscus(containerId, term) {
       '</div>';
     return;
   }
+  // 先卸载页面上已存在的 giscus 实例，防止重复挂载
+  document.querySelectorAll('.giscus-container iframe').forEach(function(frame) {
+    try { frame.contentWindow.postMessage('giscus:remove-frame', '*'); } catch(e) {}
+    frame.remove();
+  });
   var script = document.createElement('script');
   script.src = 'https://giscus.app/client.js';
   script.setAttribute('data-repo', GISCUS_CONFIG.repo);
