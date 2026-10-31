@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>★ 诚札记 ★ AClaire's Personal Blog</title>
+<meta name="description" content="诚札记 — AClaire的日常分享、技术笔记与兴趣记录">
+<style>
+/* SECTION: reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* SECTION: variables — 竹绿色莫兰迪色系 */
+:root {
+  --bg-page: #DDD9D1;
+  --bg-tile: #C9C5BD;
+  --bg-content: #F5F2EC;
+  --bg-content-alt: #EBE7DF;
+  --bg-sidebar: #E8E4DC;
+  --bg-nav: #7B9E8A;
+  --bg-nav-dark: #5A8068;
+
+  --text-dark: #2D2D2D;
+  --text-body: #4A4A4A;
+  --text-light: #7A7A7A;
+  --text-on-green: #F5F2EC;
+
+  --text-link: #4A7A5C;
+  --text-link-visited: #6B5B7A;
+  --text-link-hover: #C44536;
+
+  --accent: #6B987F;
+  --accent-dark: #4A7A5C;
+  --accent-light: #A3C9A8;
+  --accent-warm: #C4A882;
+  --accent-muted: #9DB5A0;
+
+  --border-dark: #B0AAA0;
+  --border-light: #D4D0C8;
+  --border-accent: #8BAF96;
+
+  --font-body: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --font-mono: "Courier New", "Lucida Console", monospace;
+
+  --max-width: 960px;
+}
+
+/* SECTION: base */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--text-dark);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+/* subtle texture background */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(107,152,127,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(196,168,130,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* SECTION: scrollbar */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: var(--bg-tile); }
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border: 2px solid var(--bg-tile);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
+
+/* SECTION: page wrapper */
+.page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 12px;
+}
+
+/* SECTION: header banner */
+.site-header {
+  background: linear-gradient(90deg, #7B9E8A 0%, #6B987F 30%, #5A8068 50%, #6B987F 70%, #7B9E8A 100%);
+  border: 2px solid var(--border-dark);
+  border-radius: 8px 8px 0 0;
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.site-title {
+  font-size: clamp(22px, 5vw, 34px);
+  font-weight: 800;
+  color: var(--text-on-green);
+  letter-spacing: 4px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  position: relative; z-index: 1;
+}
+.site-title .star { color: var(--accent-warm); }
+.site-subtitle {
+  font-size: 13px;
+  color: rgba(245,242,236,0.85);
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  position: relative; z-index: 1;
+}
+.header-deco {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 12px; position: relative; z-index: 1;
+}
+.deco-dot { width: 6px; height: 6px; border-radius: 50%; }
+.deco-dot:nth-child(1) { background: var(--accent-warm); }
+.deco-dot:nth-child(2) { background: var(--accent-light); }
+.deco-dot:nth-child(3) { background: #E8E4DC; }
+.deco-dot:nth-child(4) { background: var(--accent-light); }
+.deco-dot:nth-child(5) { background: var(--accent-warm); }
+
+/* SECTION: nav bar */
+.nav-bar {
+  background: var(--bg-nav-dark);
+  border-left: 2px solid var(--border-dark);
+  border-right: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-dark);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-link {
+  display: inline-block;
+  padding: 10px 22px;
+  color: var(--text-on-green);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+.nav-link:last-child { border-right: none; }
+.nav-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.nav-link.active {
+  background: var(--accent-dark);
+  color: var(--accent-warm);
+}
+
+/* SECTION: marquee */
+.marquee-bar {
+  background: var(--bg-tile);
+  border: 1px solid var(--border-dark);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 4px 0;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--accent-dark);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding-left: 100%;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* SECTION: main layout */
+.main-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.content-area { flex: 1; min-width: 0; }
+.sidebar { width: 210px; flex-shrink: 0; }
+@media (max-width: 720px) {
+  .main-layout { flex-direction: column; }
+  .sidebar { width: 100%; order: 2; }
+}
+
+/* SECTION: panel */
+.panel {
+  background: var(--bg-content);
+  border: 1px solid var(--border-dark);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.panel-title {
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+  color: var(--text-on-green);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.panel-title .icon { font-size: 14px; opacity: 0.8; }
+.panel-body { padding: 16px; }
+
+/* SECTION: views */
+.view { display: none; }
+.view.active { display: block; }
+
+/* SECTION: hero */
+.hero-panel { text-align: center; padding: 28px 20px; }
+.hero-welcome {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-bottom: 10px;
+}
+.hero-text {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.8;
+}
+
+/* SECTION: article list */
+.article-list { list-style: none; }
+.article-item {
+  padding: 14px 16px;
+  border-bottom: 1px dashed var(--border-light);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.article-item:last-child { border-bottom: none; }
+.article-item:hover { background: var(--bg-content-alt); }
+.article-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.article-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 1px solid;
+}
+.article-badge.life { background: #E8EDE5; color: #4A7A5C; border-color: #8BAF96; }
+.article-badge.tech { background: #E5E8ED; color: #4A6080; border-color: #8B9AAF; }
+.article-badge.hobby { background: #EDE8E0; color: #8A6B40; border-color: #B8A882; }
+.article-date {
+  font-size: 12px;
+  color: var(--text-light);
+  font-family: var(--font-mono);
+}
+.article-new {
+  font-size: 11px;
+  color: var(--text-link-hover);
+  font-weight: 700;
+  animation: blink 1.2s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0.2; } }
+.article-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-link);
+  margin-bottom: 4px;
+}
+.article-item:hover .article-title { color: var(--text-link-hover); }
+.article-excerpt {
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.article-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.article-tag {
+  font-size: 11px;
+  color: var(--text-light);
+  background: var(--bg-tile);
+  padding: 1px 6px;
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+}
+
+/* SECTION: article detail */
+.article-detail-header {
+  border-bottom: 1px solid var(--border-dark);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--text-link);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  cursor: pointer;
+}
+.back-link:hover { color: var(--text-link-hover); text-decoration: underline; }
+.detail-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.detail-meta {
+  font-size: 12px;
+  color: var(--text-light);
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.detail-author { display: inline-flex; align-items: center; gap: 6px; }
+.author-avatar {
+  width: 24px; height: 24px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: white;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+}
+
+/* article content typography */
+.article-content { font-size: 15px; line-height: 1.9; color: var(--text-body); }
+.article-content h2 {
+  font-size: 18px; font-weight: 700; margin: 24px 0 12px;
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 4px;
+}
+.article-content h3 { font-size: 16px; font-weight: 600; margin: 20px 0 10px; color: var(--text-dark); }
+.article-content p { margin-bottom: 14px; }
+.article-content ul, .article-content ol { margin: 12px 0; padding-left: 24px; }
+.article-content li { margin-bottom: 6px; }
+.article-content code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: #E8EDE5;
+  padding: 1px 4px;
+  border: 1px solid var(--border-accent);
+  border-radius: 3px;
+  color: var(--accent-dark);
+}
+.article-content pre {
+  background: #2D2D2D;
+  color: #A3C9A8;
+  padding: 14px;
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: var(--font-mono);
+}
+.article-content pre code { background: none; border: none; color: inherit; padding: 0; }
+.article-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 10px 16px;
+  margin: 12px 0;
+  background: var(--bg-content-alt);
+  color: var(--text-body);
+  font-style: italic;
+  border-radius: 0 4px 4px 0;
+}
+.detail-tags {
+  margin-top: 24px; padding-top: 14px;
+  border-top: 1px dashed var(--border-light);
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+
+/* SECTION: comments */
+.comments-section {
+  margin-top: 28px; padding-top: 18px;
+  border-top: 1px solid var(--border-dark);
+}
+.comments-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--text-dark); }
+.comments-placeholder {
+  background: var(--bg-content-alt);
+  border: 1px dashed var(--border-light);
+  border-radius: 4px;
+  padding: 28px 16px;
+  text-align: center;
+}
+.placeholder-text { font-size: 14px; color: var(--text-body); margin-bottom: 4px; }
+.placeholder-hint { font-size: 12px; color: var(--text-light); }
+.giscus-container { min-height: 80px; }
+
+/* SECTION: sidebar widgets */
+.widget { margin-bottom: 14px; }
+.widget-title {
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+  color: var(--text-on-green);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border: 1px solid var(--border-dark);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+}
+.widget-body {
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-dark);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 12px;
+  font-size: 12px;
+  color: var(--text-body);
+}
+
+/* profile */
+.profile-avatar {
+  width: 44px; height: 44px;
+  margin: 0 auto 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 18px; font-weight: 700;
+}
+.profile-name { font-size: 14px; font-weight: 700; color: var(--accent-dark); text-align: center; margin-bottom: 2px; }
+.profile-tagline { text-align: center; font-size: 11px; color: var(--text-light); font-style: italic; }
+
+/* visitor counter */
+.counter { display: flex; align-items: center; gap: 4px; justify-content: center; }
+.counter-label { font-size: 11px; color: var(--text-body); }
+.counter-digits {
+  background: #2D2D2D;
+  padding: 2px 6px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  display: flex;
+  gap: 2px;
+}
+.counter-digit {
+  color: var(--accent-light);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+}
+.counter-extra { text-align: center; margin-top: 8px; font-size: 11px; color: var(--text-light); }
+
+/* SECTION: playlist panel (netease embed) */
+.playlist-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.playlist-frame {
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  background: var(--bg-content-alt);
+  max-width: 100%;
+}
+.playlist-hint {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 8px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* quick links */
+.quick-links { list-style: none; font-size: 12px; line-height: 2; }
+.quick-links a {
+  color: var(--text-link);
+  text-decoration: none;
+  cursor: pointer;
+}
+.quick-links a:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+/* SECTION: about */
+.about-content { text-align: center; padding: 20px; }
+.about-avatar-lg {
+  width: 68px; height: 68px;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 50%;
+  border: 3px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 28px; font-weight: 700;
+}
+.about-name { font-size: 20px; font-weight: 800; color: var(--accent-dark); margin-bottom: 4px; }
+.about-tagline { font-size: 13px; color: var(--text-light); font-style: italic; margin-bottom: 16px; }
+.about-bio {
+  font-size: 14px; color: var(--text-body); line-height: 1.8;
+  text-align: left; max-width: 480px; margin: 0 auto 16px;
+}
+.about-interests { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 16px; }
+.interest-tag {
+  padding: 3px 10px; font-size: 12px;
+  background: var(--accent-light); color: var(--accent-dark);
+  border: 1px solid var(--border-accent);
+  border-radius: 3px; font-weight: 600;
+}
+.about-contact {
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-light);
+  display: flex; gap: 16px; justify-content: center;
+}
+.contact-link { font-size: 13px; color: var(--text-link); text-decoration: none; font-family: var(--font-mono); cursor: pointer; }
+.contact-link:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+/* SECTION: guestbook */
+.guestbook-content { padding: 20px; }
+.guestbook-intro { text-align: center; margin-bottom: 20px; }
+.guestbook-title { font-size: 22px; font-weight: 800; color: var(--accent-dark); margin-bottom: 8px; }
+.guestbook-desc { font-size: 13px; color: var(--text-body); }
+
+/* SECTION: footer */
+.site-footer {
+  margin-top: 16px;
+  background: var(--bg-tile);
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 14px 20px;
+  text-align: center;
+}
+.footer-text { font-size: 12px; color: var(--text-light); font-family: var(--font-mono); line-height: 1.8; }
+
+/* SECTION: responsive */
+@media (max-width: 720px) {
+  .page-wrapper { padding: 8px; }
+  .nav-link { padding: 8px 14px; font-size: 13px; }
+  .panel-body { padding: 12px; }
+  .article-content { font-size: 14px; }
+  .detail-title { font-size: 18px; }
+  .sidebar { width: 100%; }
+}
+
+/* SECTION: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .marquee-text { animation: none; padding-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+<!-- SECTION: header -->
+<header class="site-header">
+  <h1 class="site-title"><span class="star">◇</span> 诚札记 <span class="star">◇</span></h1>
+  <p class="site-subtitle">~ AClaire's Personal Blog ~ 记录生活 · 技术 · 兴趣 ~</p>
+  <div class="header-deco">
+    <span class="deco-dot"></span><span class="deco-dot"></span><span class="deco-dot"></span><span class="deco-dot"></span><span class="deco-dot"></span>
+  </div>
+</header>
+
+<!-- SECTION: nav — onclick 导航，不依赖 hashchange -->
+<nav class="nav-bar">
+  <a class="nav-link" data-route="/" onclick="navigateTo('/'); return false;">◇ 首页</a>
+  <a class="nav-link" data-route="/about" onclick="navigateTo('/about'); return false;">关于博主</a>
+  <a class="nav-link" data-route="/guestbook" onclick="navigateTo('/guestbook'); return false;">留言板</a>
+</nav>
+
+<!-- SECTION: marquee -->
+<div class="marquee-bar">
+  <div class="marquee-text">
+    ◇ 欢迎来到诚札记！ ◇ 这里记录AClaire的日常分享、技术笔记与兴趣心得 ◇ 如有想法欢迎在留言板留下 ◇ 本站最后更新：2026年10月31日 ◇ 谢谢你的来访 ◇
+  </div>
+</div>
+
+<!-- SECTION: main layout -->
+<div class="main-layout">
+  <div class="content-area">
+
+    <!-- home view -->
+    <section id="view-home" class="view active">
+      <div class="panel">
+        <div class="panel-title"><span class="icon">◇</span> 公告栏</div>
+        <div class="panel-body hero-panel">
+          <p class="hero-welcome">欢迎来到诚札记</p>
+          <p class="hero-text">这是 AClaire 的个人博客。这里记录日常所见、所思、所学——生活随笔、技术笔记、兴趣爱好，什么都写一点。随便逛逛，希望你能找到感兴趣的内容。</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><span class="icon">◇</span> 我的歌单</div>
+        <div class="panel-body playlist-body">
+          <iframe class="playlist-frame"
+            src="https://music.163.com/outchain/player?type=0&id=2103852415&auto=0&height=430"
+            width="330" height="452"
+            frameborder="no" border="0" marginwidth="0" marginheight="0"
+            scrolling="no" allow="autoplay; clipboard-write; encrypted-media"
+            title="AClaire 的网易云歌单"
+            loading="lazy"></iframe>
+          <p class="playlist-hint">
+            ◇ 这是 AClaire 常听的歌单，点播放键即可连续收听 ◇<br>
+            部分歌曲因网易云版权或会员限制可能无法播放
+          </p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><span class="icon">◇</span> 最新文章</div>
+        <div class="panel-body" style="padding:0">
+          <ul class="article-list" id="article-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- article detail view -->
+    <section id="view-article" class="view">
+      <div class="panel">
+        <div class="panel-title"><span class="icon">◇</span> 阅读文章</div>
+        <div class="panel-body" id="article-detail-container"></div>
+      </div>
+    </section>
+
+    <!-- about view -->
+    <section id="view-about" class="view">
+      <div class="panel">
+        <div class="panel-title"><span class="icon">◇</span> 关于博主</div>
+        <div class="panel-body about-content">
+          <div class="about-avatar-lg">A</div>
+          <h2 class="about-name">AClaire</h2>
+          <p class="about-tagline">~ 记录生活，保持好奇 ~</p>
+          <div class="about-bio">
+            你好，我是 AClaire。这里是我的个人博客「诚札记」。我会在上面分享日常生活中的点滴感悟、学习技术的笔记，以及一些兴趣爱好方面的心得。没有什么宏大的主题，就是诚实地记录、札实地写下。如果你恰好路过，欢迎留下你的想法。
+          </div>
+          <div class="about-interests">
+            <span class="interest-tag">阅读</span>
+            <span class="interest-tag">编程</span>
+            <span class="interest-tag">城市漫步</span>
+            <span class="interest-tag">咖啡</span>
+            <span class="interest-tag">写作</span>
+          </div>
+          <div class="about-contact">
+            <a class="contact-link" onclick="return false">邮箱（待填写）</a>
+            <a class="contact-link" onclick="return false">GitHub（待填写）</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- guestbook view -->
+    <section id="view-guestbook" class="view">
+      <div class="panel">
+        <div class="panel-title"><span class="icon">◇</span> 留言板</div>
+        <div class="panel-body guestbook-content">
+          <div class="guestbook-intro">
+            <h1 class="guestbook-title">◇ 留言板 ◇</h1>
+            <p class="guestbook-desc">无论是对文章的反馈、随便聊聊，还是想对我说的话，都欢迎在这里留下。</p>
+          </div>
+          <div class="giscus-container" id="giscus-guestbook"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- sidebar -->
+  <aside class="sidebar">
+    <div class="widget">
+      <div class="widget-title">◇ 博主档案</div>
+      <div class="widget-body">
+        <div class="profile-avatar">A</div>
+        <div class="profile-name">AClaire</div>
+        <div class="profile-tagline">记录生活，保持好奇</div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title">◇ 访问统计</div>
+      <div class="widget-body">
+        <div class="counter">
+          <span class="counter-label">总访问：</span>
+          <div class="counter-digits" id="counter-digits"></div>
+        </div>
+        <div class="counter-extra" id="counter-extra"></div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title">◇ 我的歌单</div>
+      <div class="widget-body">
+        <p style="font-size:12px; color:var(--text-body); line-height:1.7; text-align:center; margin-bottom:8px;">
+          平时听的歌都在这儿，首页下方有完整播放器。
+        </p>
+        <ul class="quick-links" style="justify-content:center;">
+          <li><a onclick="navigateTo('/'); return false;">&gt; 去首页听歌</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title">◇ 快捷链接</div>
+      <div class="widget-body">
+        <ul class="quick-links">
+          <li><a onclick="navigateTo('/'); return false;">&gt; 返回首页</a></li>
+          <li><a onclick="navigateTo('/about'); return false;">&gt; 关于博主</a></li>
+          <li><a onclick="navigateTo('/guestbook'); return false;">&gt; 留言板</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- SECTION: footer -->
+<footer class="site-footer">
+  <p class="footer-text">
+    ◇ 诚札记 ◇ AClaire's Personal Blog ◇<br>
+    &copy; 2026 AClaire · 用心记录，札实生活
+  </p>
+</footer>
+
+</div>
+
+<script>
+// ============================================
+// Giscus 评论系统配置
+// ============================================
+const GISCUS_CONFIG = {
+  enabled: false,
+  repo: '',
+  repoId: '',
+  category: 'Announcements',
+  categoryId: '',
+  theme: 'light',
+  lang: 'zh-CN',
+};
+
+// SECTION: article data
+const articles = [
+  {
+    id: '001',
+    title: '十月的南昌，桂香满城',
+    date: '2026-10-28',
+    category: 'life',
+    categoryLabel: '生活',
+    tags: ['生活', '随笔', '南昌'],
+    excerpt: '南昌的秋天总是来得猝不及防。前几天还在穿短袖，一夜之间，满城的桂花就开了……',
+    isNew: true,
+    content: '<p>南昌的秋天总是来得猝不及防。</p><p>前几天还在穿短袖，一夜之间，满城的桂花就开了。走在路上，空气里弥漫着甜丝丝的香气，让人忍不住深呼吸。</p><p>小区楼下那棵老桂花树今年开得格外旺盛。细碎的金黄色小花缀满枝头，风一吹就簌簌落下，铺了一地碎金。</p><p>我总喜欢在这个季节，泡一杯茶，坐在阳台上，让桂花的香气飘进来。这是属于南昌秋天独有的味道。</p><blockquote>如果你也在南昌，不妨走出家门，去赣江边走走，去老城区的巷子里转转。秋天的南昌，值得你慢慢感受。</blockquote>'
+  },
+  {
+    id: '002',
+    title: '周末厨房：一碗家常汤面',
+    date: '2026-10-25',
+    category: 'life',
+    categoryLabel: '生活',
+    tags: ['生活', '美食'],
+    excerpt: '周末的早晨，没有什么比一碗热腾腾的汤面更让人满足的了。做法很简单……',
+    isNew: true,
+    content: '<p>周末的早晨，没有什么比一碗热腾腾的汤面更让人满足的了。</p><h3>做法很简单</h3><p>先把骨头汤提前炖上，小火慢熬两个小时，汤色发白就对了。如果没有骨头汤，清水加一点生抽也能凑合。</p><p>面条我习惯用手擀面，口感更筋道。超市买的挂面也行，煮的时候注意别过软。</p><h3>配菜随意</h3><ul><li>几片青菜</li><li>半个番茄切丁</li><li>一个鸡蛋打散摊成蛋皮切丝</li><li>讲究一点的可以加几片卤牛肉</li></ul><p>最后调味：盐、少许白胡椒粉、几滴香油。汤要宽，面要少，这样每一口面都裹着汤汁。</p><blockquote>端上桌，热气升腾。一口汤下肚，整个周末都对了。</blockquote>'
+  },
+  {
+    id: '003',
+    title: 'CSS backdrop-filter：让界面透出层次感',
+    date: '2026-10-22',
+    category: 'tech',
+    categoryLabel: '技术',
+    tags: ['技术', 'CSS', '前端'],
+    excerpt: 'backdrop-filter 是 CSS 中一个被低估的属性。它可以让元素背后的内容产生模糊效果……',
+    isNew: false,
+    content: '<p><code>backdrop-filter</code> 是 CSS 中一个被低估的属性。它可以让元素背后的内容产生模糊、饱和度增强等效果，从而营造出"毛玻璃"的视觉质感。</p><h2>基本用法</h2><pre><code>.glass-panel {\n  background: rgba(255, 255, 255, 0.6);\n  backdrop-filter: blur(30px) saturate(180%);\n  -webkit-backdrop-filter: blur(30px) saturate(180%);\n}</code></pre><h2>几个关键点</h2><ol><li><strong>透明度要适中</strong>：背景色透明度建议在 50%-80% 之间。太低看不出效果，太高就变成了不透明色块。</li><li><strong>模糊值别太小</strong>：<code>blur(20px)</code> 是起步，30px-40px 效果更好。低于 10px 基本看不出区别。</li><li><strong>别忘了 saturate</strong>：饱和度增强让背景色彩透过玻璃后更鲜亮，这是真实玻璃的光学特性。</li><li><strong>兼容性</strong>：Safari 需要加 <code>-webkit-</code> 前缀。目前主流浏览器都已支持。</li><li><strong>性能</strong>：<code>backdrop-filter</code> 会触发 GPU 合成，大量使用可能影响性能。建议只在关键面板上使用。</li></ol><blockquote>配合圆角、层叠阴影和微妙边框，就能做出很有质感的界面。</blockquote>'
+  },
+  {
+    id: '004',
+    title: 'Git rebase vs merge：我的日常选择',
+    date: '2026-10-18',
+    category: 'tech',
+    categoryLabel: '技术',
+    tags: ['技术', 'Git'],
+    excerpt: '这是一个经典的团队争论话题。说说我的理解和使用习惯……',
+    isNew: false,
+    content: '<p>这是一个经典的团队争论话题。说说我的理解和使用习惯。</p><h2>merge 的好处</h2><p>merge 是最安全的操作。它保留完整的提交历史，不会修改已有提交。对于公共分支（团队共用的分支），永远用 merge。</p><h2>rebase 的好处</h2><p>rebase 让提交历史变成一条直线，干净整洁。它通过"重放"提交来实现，所以会改变提交的 hash。</p><h2>我的日常流程</h2><pre><code># 在 feature 分支上开发\ngit checkout feature-branch\n\n# 开发完成后，先 rebase 到最新的 main\ngit fetch origin\ngit rebase origin/main\n\n# 如果有冲突，解决后 continue\ngit rebase --continue\n\n# rebase 完成后，合并到 main\ngit checkout main\ngit merge feature-branch</code></pre><blockquote>一句话总结：自己的分支 rebase，公共的分支 merge。永远不会错。</blockquote>'
+  },
+  {
+    id: '005',
+    title: '最近读完的三本书',
+    date: '2026-10-14',
+    category: 'hobby',
+    categoryLabel: '兴趣',
+    tags: ['读书', '兴趣'],
+    excerpt: '趁着周末整理了一下最近读的书，挑三本印象最深的分享……',
+    isNew: false,
+    content: '<p>趁着周末整理了一下最近读的书，挑三本印象最深的分享。</p><h2>《置身事内》— 兰小欢</h2><p>讲中国政府与经济的入门书。用通俗的语言把地方政府的行为逻辑讲得很清楚，读完对很多政策背后的逻辑有了新的理解。推荐给所有想了解中国经济运作方式的人。</p><h2>《长安的荔枝》— 马伯庸</h2><p>历史小说，讲一个小吏如何在极限时间内把鲜荔枝从岭南运到长安。节奏紧凑，读起来停不下来。表面是物流故事，写的是职场和人性。</p><h2>《编程珠玑》— Jon Bentley</h2><p>技术经典，虽然年代久远但思路永不过时。每一章用一个实际问题引入，展示算法思维如何解决工程问题。适合反复读，每次都有新收获。</p><blockquote>读书这事儿，不贪多，读到好书比读很多书重要。</blockquote>'
+  },
+  {
+    id: '006',
+    title: '老街巷里的咖啡馆地图',
+    date: '2026-10-10',
+    category: 'hobby',
+    categoryLabel: '兴趣',
+    tags: ['咖啡', '城市', '兴趣'],
+    excerpt: '每个城市的老街巷里，都藏着一些值得探索的咖啡馆。南昌也不例外……',
+    isNew: false,
+    content: '<p>每个城市的老街巷里，都藏着一些值得探索的咖啡馆。</p><p>南昌也不例外。这几年，万寿宫周边的老巷子里冒出了不少有意思的小店。</p><p>有的藏在居民楼一楼，门口只有一块小木板写着店名；有的在巷子拐角处，不仔细看就会错过。但推门进去，往往是另一个世界。</p><p>我喜欢在周末下午，带上书或电脑，随机走进一家没去过的店。点一杯手冲，坐在窗边，看来来往往的人。</p><blockquote>老街巷的好处在于，它们保留了城市的生活气息。咖啡馆和修鞋铺、裁缝店做邻居，这种混搭才是一个街区最真实的样子。</blockquote><p>如果你也有常去的街角咖啡馆，欢迎在留言板分享。</p>'
+  }
+];
+
+// SECTION: render article list
+function renderArticleList() {
+  var list = document.getElementById('article-list');
+  list.innerHTML = articles.map(function(article) {
+    var newBadge = article.isNew ? ' <span class="article-new">[NEW]</span>' : '';
+    return '<li class="article-item" data-primary-action onclick="goToArticle(\'' + article.id + '\')">' +
+      '<div class="article-item-header">' +
+        '<span class="article-badge ' + article.category + '">' + article.categoryLabel + '</span>' +
+        '<span class="article-date">[' + article.date + ']</span>' +
+        newBadge +
+      '</div>' +
+      '<div class="article-title">' + article.title + '</div>' +
+      '<div class="article-excerpt">' + article.excerpt + '</div>' +
+      '<div class="article-tags">' +
+        article.tags.map(function(t) { return '<span class="article-tag">' + t + '</span>'; }).join('') +
+      '</div>' +
+    '</li>';
+  }).join('');
+}
+
+// SECTION: render article detail
+function renderArticleDetail(article) {
+  var container = document.getElementById('article-detail-container');
+  container.innerHTML =
+    '<a class="back-link" onclick="navigateTo(\'/\'); return false;">&lt;&lt; 返回首页</a>' +
+    '<div class="article-detail-header">' +
+      '<h1 class="detail-title">' + article.title + '</h1>' +
+      '<div class="detail-meta">' +
+        '<span class="detail-author">' +
+          '<span class="author-avatar">A</span>' +
+          '<span>AClaire</span>' +
+        '</span>' +
+        '<span>|</span>' +
+        '<span>' + article.date + '</span>' +
+        '<span>|</span>' +
+        '<span class="article-badge ' + article.category + '">' + article.categoryLabel + '</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="article-content">' + article.content + '</div>' +
+    '<div class="detail-tags">' +
+      article.tags.map(function(t) { return '<span class="article-tag">' + t + '</span>'; }).join('') +
+    '</div>' +
+    '<div class="comments-section">' +
+      '<h3 class="comments-title">◇ 评论 ◇</h3>' +
+      '<div class="giscus-container" id="giscus-article"></div>' +
+    '</div>';
+  loadGiscus('giscus-article', 'article-' + article.id);
+}
+
+// SECTION: giscus loader
+function loadGiscus(containerId, term) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  if (!GISCUS_CONFIG.enabled || !GISCUS_CONFIG.repo) {
+    container.innerHTML =
+      '<div class="comments-placeholder">' +
+        '<p class="placeholder-text">[ 评论系统正在配置中... ]</p>' +
+        '<p class="placeholder-hint">博主正在接入评论功能，完成后你就可以在这里留下想法了</p>' +
+      '</div>';
+    return;
+  }
+  var script = document.createElement('script');
+  script.src = 'https://giscus.app/client.js';
+  script.setAttribute('data-repo', GISCUS_CONFIG.repo);
+  script.setAttribute('data-repo-id', GISCUS_CONFIG.repoId);
+  script.setAttribute('data-category', GISCUS_CONFIG.category);
+  script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
+  script.setAttribute('data-mapping', 'specific');
+  script.setAttribute('data-term', term);
+  script.setAttribute('data-strict', '0');
+  script.setAttribute('data-reactions-enabled', '1');
+  script.setAttribute('data-emit-metadata', '0');
+  script.setAttribute('data-input-position', 'top');
+  script.setAttribute('data-theme', GISCUS_CONFIG.theme);
+  script.setAttribute('data-lang', GISCUS_CONFIG.lang);
+  script.setAttribute('crossorigin', 'anonymous');
+  script.async = true;
+  container.innerHTML = '';
+  container.appendChild(script);
+}
+
+// SECTION: navigation — onclick 驱动，双重保障
+function navigateTo(path) {
+  window.location.hash = '#' + path;
+  navigate(path);
+}
+
+function navigate(path) {
+  if (!path) {
+    path = window.location.hash.slice(1) || '/';
+    if (path.charAt(0) !== '/') path = '/' + path;
+  }
+
+  var parts = path.split('/').filter(Boolean);
+
+  // hide all views
+  var views = document.querySelectorAll('.view');
+  for (var i = 0; i < views.length; i++) { views[i].classList.remove('active'); }
+
+  // clear nav active
+  var navLinks = document.querySelectorAll('.nav-link');
+  for (var j = 0; j < navLinks.length; j++) { navLinks[j].classList.remove('active'); }
+
+  if (parts.length === 0 || (parts.length === 1 && parts[0] === '')) {
+    document.getElementById('view-home').classList.add('active');
+    setActiveNav('/');
+  } else if (parts[0] === 'about') {
+    document.getElementById('view-about').classList.add('active');
+    setActiveNav('/about');
+  } else if (parts[0] === 'guestbook') {
+    document.getElementById('view-guestbook').classList.add('active');
+    setActiveNav('/guestbook');
+    loadGiscus('giscus-guestbook', 'guestbook');
+  } else if (parts[0] === 'article') {
+    var articleId = parts[1];
+    var article = null;
+    for (var k = 0; k < articles.length; k++) {
+      if (articles[k].id === articleId) { article = articles[k]; break; }
+    }
+    if (article) {
+      renderArticleDetail(article);
+      document.getElementById('view-article').classList.add('active');
+    } else {
+      document.getElementById('view-home').classList.add('active');
+      setActiveNav('/');
+    }
+  } else {
+    document.getElementById('view-home').classList.add('active');
+    setActiveNav('/');
+  }
+  window.scrollTo(0, 0);
+}
+
+function setActiveNav(route) {
+  var navLinks = document.querySelectorAll('.nav-link');
+  for (var i = 0; i < navLinks.length; i++) {
+    if (navLinks[i].getAttribute('data-route') === route) {
+      navLinks[i].classList.add('active');
+    }
+  }
+}
+
+function goToArticle(id) { navigateTo('/article/' + id); }
+
+// SECTION: visitor counter — localStorage 真实计数
+function initVisitorCounter() {
+  var key = 'chengzhaji_visits';
+  var todayKey = 'chengzhaji_today';
+  var todayDate = new Date().toDateString();
+  var total = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+  var today = localStorage.getItem(todayKey);
+  if (today && today.split('|')[0] === todayDate) {
+    today = parseInt(today.split('|')[1], 10) + 1;
+  } else {
+    today = 1;
+  }
+  localStorage.setItem(key, String(total));
+  localStorage.setItem(todayKey, todayDate + '|' + today);
+
+  // render digits
+  var str = String(total);
+  while (str.length < 6) { str = '0' + str; }
+  var digitsHtml = '';
+  for (var i = 0; i < str.length; i++) {
+    digitsHtml += '<span class="counter-digit">' + str[i] + '</span>';
+  }
+  document.getElementById('counter-digits').innerHTML = digitsHtml;
+  document.getElementById('counter-extra').innerHTML = '今日：' + String(today).padStart(3, '0');
+}
+
+// SECTION: playlist — 歌单由网易云官方 iframe 提供，无需本地播放逻辑
+
+// SECTION: init
+window.addEventListener('hashchange', function() { navigate(); });
+window.addEventListener('DOMContentLoaded', function() {
+  renderArticleList();
+  initVisitorCounter();
+  navigate();
+});
+</script>
+</body>
+</html>
